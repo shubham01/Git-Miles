@@ -12,6 +12,7 @@ import SwiftyJSON
 class RepositoryViewController: UITableViewController {
     
     var repos:[Repository] = []
+    var clickedItem: Int!
     
     let activityIndicator = UIActivityIndicatorView()
     
@@ -29,7 +30,7 @@ class RepositoryViewController: UITableViewController {
             
             self.activityIndicator.hidden = true
             
-            debugPrint(response.result.value!)
+//            debugPrint(response.result.value!)
             let statusCode = response.response?.statusCode
             print("status code: \(statusCode)")
             if (statusCode >= 200 && statusCode < 300) {
@@ -37,11 +38,20 @@ class RepositoryViewController: UITableViewController {
                 for (_, repo) in json {
                     let repoId = repo["id"].int!
                     let repoName = repo["name"].string!
-                    self.repos.append(Repository(id: repoId, name: repoName))
+                    let url = repo["url"].string!
+                    self.repos.append(Repository(id: repoId, name: repoName, url: url))
                 }
             }
             
             self.tableView.reloadData()
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "repoToMilestones") {
+            let target = segue.destinationViewController as! MilestonesViewController
+            target.repoUrl = repos[clickedItem].url
+            
         }
     }
     
@@ -65,10 +75,10 @@ class RepositoryViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let row = indexPath.row
-        print("Row: \(row)")
-        print(repos[row].name)
+        clickedItem = indexPath.row
+        performSegueWithIdentifier("repoToMilestones", sender: self)
     }
     
     

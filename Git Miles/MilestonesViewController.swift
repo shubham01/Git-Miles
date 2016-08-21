@@ -7,11 +7,61 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class MilestonesViewController: UIViewController {
+class MilestonesViewController: UITableViewController {
+    
+    var milestones:[Milestone] = []
+    var repoUrl:String!
+    let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
+        let milestonesUrl = repoUrl + "/milestones"
+        
+        GitHubAPIManager.sharedInstance.getMilestones(milestonesUrl) {
+            response in
+            
+            debugPrint(response.result.value!)
+            
+            self.activityIndicator.hidden = true
+            let statusCode = response.response?.statusCode
+            
+            if (statusCode >= 200 && statusCode < 300) {
+                let json = JSON(response.result.value!)
+                for (_, milestone) in json {
+                    self.milestones.append(Milestone(json: milestone))
+                }
+            }
+            
+            self.tableView.reloadData()
+        }
     }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return milestones.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+        -> UITableViewCell {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("milestoneCell", forIndexPath: indexPath)
+            let milestone = milestones[indexPath.row] as Milestone
+            cell.textLabel?.text = milestone.title
+            cell.detailTextLabel?.text = milestone.description
+            
+            return cell
+    }
+    
     
 }
