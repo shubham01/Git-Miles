@@ -1,0 +1,6 @@
+framework module Pods_Git_MilesUITests {
+  umbrella header "Pods-Git MilesUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
