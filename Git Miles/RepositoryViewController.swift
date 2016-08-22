@@ -36,10 +36,7 @@ class RepositoryViewController: UITableViewController {
             if (statusCode >= 200 && statusCode < 300) {
                 let json = JSON(response.result.value!)
                 for (_, repo) in json {
-                    let repoId = repo["id"].int!
-                    let repoName = repo["name"].string!
-                    let url = repo["url"].string!
-                    self.repos.append(Repository(id: repoId, name: repoName, url: url))
+                    self.repos.append(Repository(repo: repo))
                 }
             }
             
@@ -51,7 +48,6 @@ class RepositoryViewController: UITableViewController {
         if (segue.identifier == "repoToMilestones") {
             let target = segue.destinationViewController as! MilestonesViewController
             target.repo = repos[clickedItem]
-            
         }
     }
     
@@ -69,7 +65,7 @@ class RepositoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("repositoryCell", forIndexPath: indexPath)
         let repo = repos[indexPath.row] as Repository
         cell.textLabel?.text = repo.name
-        cell.detailTextLabel?.text = String(repo.id)
+        cell.detailTextLabel?.text = String(repo.ownerLogin)
         
         return cell
     }

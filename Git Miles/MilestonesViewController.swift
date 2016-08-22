@@ -77,5 +77,9 @@ class MilestonesViewController: UITableViewController {
         presentViewController(popup, animated: true, completion: nil)
     }
     
+    func prepareMilestoneDetails(milestone: Milestone) -> String {
+        return ""
+    }
+    
     
 }

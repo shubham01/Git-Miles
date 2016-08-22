@@ -6,17 +6,19 @@
 //  Copyright © 2016 Shubham Agrawal. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 
 class Repository {
     var id : Int = 0
     var name : String = ""
     var url: String = ""
+    var ownerLogin: String = ""
     
-    init(id: Int, name: String, url: String) {
-        self.id = id
-        self.name = name
-        self.url = url
+    init(repo: JSON) {
+        self.id = repo["id"].intValue
+        self.name = repo["name"].stringValue
+        self.url = repo["url"].stringValue
+        self.ownerLogin = repo["owner"]["login"].stringValue
     }
     
 }
