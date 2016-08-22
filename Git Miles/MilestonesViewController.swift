@@ -12,7 +12,7 @@ import SwiftyJSON
 class MilestonesViewController: UITableViewController {
     
     var milestones:[Milestone] = []
-    var repoUrl:String!
+    var repo: Repository!
     let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class MilestonesViewController: UITableViewController {
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
-        let milestonesUrl = repoUrl + "/milestones"
+        let milestonesUrl = repo.url + "/milestones"
         
         GitHubAPIManager.sharedInstance.getMilestones(milestonesUrl) {
             response in
@@ -61,6 +61,20 @@ class MilestonesViewController: UITableViewController {
             cell.detailTextLabel?.text = milestone.description
             
             return cell
+    }
+    
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        print("Detail button clicked: \(indexPath.row)")
+        
+        let milestone = milestones[indexPath.row]
+        
+        var message = milestone.description + "Created at: \(milestone.createdAt)"
+        
+        let popup = UIAlertController(title: milestone.title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        popup.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+        
+        presentViewController(popup, animated: true, completion: nil)
     }
     
     

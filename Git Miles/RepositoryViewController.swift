@@ -50,7 +50,7 @@ class RepositoryViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "repoToMilestones") {
             let target = segue.destinationViewController as! MilestonesViewController
-            target.repoUrl = repos[clickedItem].url
+            target.repo = repos[clickedItem]
             
         }
     }
