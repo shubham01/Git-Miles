@@ -29,8 +29,6 @@ class PullRequestsViewController: UITableViewController {
         
         tableView.registerNib(UINib(nibName: "PRMilestoneCellContent", bundle: nil), forCellReuseIdentifier: "prMilestoneCellContent")
         
-        tableView.registerNib(UINib(nibName: "PRMilestoneCellHeader", bundle: nil), forCellReuseIdentifier: "prMilestoneCellHeader")
-        
         tableView.registerNib(UINib(nibName: "PullRequestCell", bundle: nil), forCellReuseIdentifier: "pullRequestCell")
 
         
@@ -52,63 +50,44 @@ class PullRequestsViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1 + pullRequests.count
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //        return UITableViewAutomaticDimension
-        if (indexPath.section == 0 && indexPath.row == 1) {
-            return milestoneDetailsCollapsed ? 0 : 100
+        if (indexPath.row == 0) {
+            return milestoneDetailsCollapsed ? 44 : 140
         }
         return UITableViewAutomaticDimension
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section == 1) {
-            return "Pull Requests"
-        }
-        return nil
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0) {
-            return 2
-        }
-        return pullRequests.count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        if(indexPath.section == 0) {
+        if(indexPath.row == 0) {
             milestoneDetailsCollapsed = !milestoneDetailsCollapsed
+            
             tableView.beginUpdates()
             tableView.endUpdates()
+        } else if (indexPath.row == 1) {
+            
         }
-//        print(pullRequests[indexPath.row].title)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                let cell = tableView.dequeueReusableCellWithIdentifier("prMilestoneCellHeader", forIndexPath: indexPath) as! PRMilestoneCellHeader
-                cell.milestoneTitleLabel.text = milestone.title
-                cell.accessoryType = .DisclosureIndicator
-                return cell
-            }
-            if (indexPath.row == 1) {
-                let cell = tableView.dequeueReusableCellWithIdentifier("prMilestoneCellContent",
-                                                                       forIndexPath: indexPath) as! PRMilestoneCellContent
-                
-                setMilestoneCellContent(cell)
-                return cell
-            }
+        if (indexPath.row == 0) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("prMilestoneCellContent",
+                                                                   forIndexPath: indexPath) as! PRMilestoneCellContent
+            
+            cell.accessoryType = .DisclosureIndicator
+            setMilestoneCellContent(cell)
+            return cell
         }
-        if (indexPath.section == 1) {
+        if (indexPath.row == 1) {
             let cell = tableView.dequeueReusableCellWithIdentifier("pullRequestCell", forIndexPath: indexPath) as! PullRequestCell
-            let pr = pullRequests[indexPath.row]
+            let pr = pullRequests[indexPath.row - 1]
             cell.titleLabel.text = pr.title
             cell.usernameLabel.text = pr.userLogin
             return cell
@@ -117,6 +96,8 @@ class PullRequestsViewController: UITableViewController {
     }
     
     func setMilestoneCellContent(cell: PRMilestoneCellContent) {
+        
+        cell.titleLabel.text = milestone.title
         cell.descriptionLabel.text = milestone.description
         
         //To make NSDate objects from ISO8601 timestamp

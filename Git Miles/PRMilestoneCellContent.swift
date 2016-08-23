@@ -11,6 +11,7 @@ import UIKit
 class PRMilestoneCellContent: UITableViewCell {
 
     // MARK: Outlets
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dueOnLabel: UILabel!
     @IBOutlet weak var lastUpdatedLabel: UILabel!
