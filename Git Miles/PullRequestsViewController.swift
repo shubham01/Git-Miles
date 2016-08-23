@@ -10,33 +10,29 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-class PullRequestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PullRequestsViewController: UITableViewController {
     
     var milestone: Milestone!
     var repo: Repository!
     var pullRequests: [PullRequest] = []
     var activityIndicator = UIActivityIndicatorView()
     
-    // MARK: Outlets
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var descriptionView: UILabel!
-    @IBOutlet weak var lastUpdatedView: UILabel!
-    @IBOutlet weak var completedView: UILabel!
-    @IBOutlet weak var stateView: UILabel!
-    @IBOutlet weak var dueOnView: UILabel!
-    @IBOutlet weak var openAndClosedView: UILabel!
-    @IBOutlet weak var pullRequestsTable: UITableView!
+    var milestoneDetailsCollapsed: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViews()
         
-//        pullRequestsTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "pullRequestCell")
-        
-        activityIndicator.center = self.pullRequestsTable.center
+        activityIndicator.center = self.view.center
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        
+        tableView.registerNib(UINib(nibName: "PRMilestoneCellContent", bundle: nil), forCellReuseIdentifier: "prMilestoneCellContent")
+        
+        tableView.registerNib(UINib(nibName: "PRMilestoneCellHeader", bundle: nil), forCellReuseIdentifier: "prMilestoneCellHeader")
+        
+        tableView.registerNib(UINib(nibName: "PullRequestCell", bundle: nil), forCellReuseIdentifier: "pullRequestCell")
+
         
         GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url, number: milestone.number) {
             response in
@@ -51,33 +47,77 @@ class PullRequestsViewController: UIViewController, UITableViewDelegate, UITable
                     self.pullRequests.append(PullRequest(pr: issue))
                 }
             }
-            self.pullRequestsTable.reloadData()
+            self.tableView.reloadData()
             print(self.pullRequests.count)
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+        if (indexPath.section == 0 && indexPath.row == 1) {
+            return milestoneDetailsCollapsed ? 0 : 100
+        }
+        return UITableViewAutomaticDimension
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(section == 1) {
+            return "Pull Requests"
+        }
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == 0) {
+            return 2
+        }
         return pullRequests.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(pullRequests[indexPath.row].title)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if(indexPath.section == 0) {
+            milestoneDetailsCollapsed = !milestoneDetailsCollapsed
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+//        print(pullRequests[indexPath.row].title)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = pullRequestsTable.dequeueReusableCellWithIdentifier("pullRequestCell", forIndexPath: indexPath) as UITableViewCell
-        let pr = pullRequests[indexPath.row]
-        
-        cell.textLabel?.text = pr.title
-        cell.detailTextLabel?.text = pr.userLogin
-        
-        return cell
+        if (indexPath.section == 0) {
+            if (indexPath.row == 0) {
+                let cell = tableView.dequeueReusableCellWithIdentifier("prMilestoneCellHeader", forIndexPath: indexPath) as! PRMilestoneCellHeader
+                cell.milestoneTitleLabel.text = milestone.title
+                cell.accessoryType = .DisclosureIndicator
+                return cell
+            }
+            if (indexPath.row == 1) {
+                let cell = tableView.dequeueReusableCellWithIdentifier("prMilestoneCellContent",
+                                                                       forIndexPath: indexPath) as! PRMilestoneCellContent
+                
+                setMilestoneCellContent(cell)
+                return cell
+            }
+        }
+        if (indexPath.section == 1) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("pullRequestCell", forIndexPath: indexPath) as! PullRequestCell
+            let pr = pullRequests[indexPath.row]
+            cell.titleLabel.text = pr.title
+            cell.usernameLabel.text = pr.userLogin
+            return cell
+        }
+        return UITableViewCell()
     }
     
-    func setViews() {
-        titleView.text = milestone.title
-        descriptionView.text = milestone.description
+    func setMilestoneCellContent(cell: PRMilestoneCellContent) {
+        cell.descriptionLabel.text = milestone.description
         
         //To make NSDate objects from ISO8601 timestamp
         let dateFormatter = NSDateFormatter()
@@ -90,22 +130,19 @@ class PullRequestsViewController: UIViewController, UITableViewDelegate, UITable
         
         dateFormatterOut.dateFormat = "HH:mm, MMM d yyyy"
         let updatedDate = dateFormatter.dateFromString(milestone.updatedAt)
-        lastUpdatedView.text = "Updated at \(dateFormatterOut.stringFromDate(updatedDate!))"
-        
+        cell.lastUpdatedLabel.text = "Updated at \(dateFormatterOut.stringFromDate(updatedDate!))"
         
         if (milestone.dueOn == "") {
-            dueOnView.text = "No due date"
+            cell.dueOnLabel.text = "No due date"
         } else {
             dateFormatterOut.dateFormat = "MMM d yyyy"
             let dueDate = dateFormatter.dateFromString(milestone.dueOn)
-            dueOnView.text = "Due on \(dateFormatterOut.stringFromDate(dueDate!))"
+            cell.dueOnLabel.text = "Due on \(dateFormatterOut.stringFromDate(dueDate!))"
         }
         
         let completed = Double(milestone.closedIssues * 100) / Double(milestone.closedIssues + milestone.openIssues)
-        completedView.text = "\(round(completed))% completed"
-        
-        openAndClosedView.text = "\(milestone.openIssues) open | \(milestone.closedIssues) closed"
-        stateView.text = milestone.state
+        cell.completedLabel.text = "\(round(completed))% completed"
+        cell.openClosedLabel.text = "\(milestone.openIssues) open | \(milestone.closedIssues) closed"
     }
 
     override func didReceiveMemoryWarning() {
