@@ -67,9 +67,26 @@ class GitHubAPIManager {
         let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
         Alamofire.request(.GET, url, headers: headers)
             .responseJSON { response in
-                print(response.request?.allHTTPHeaderFields)
                 completionHandler(response: response)
         }
+    }
+    
+    func getPullRequestsForMilestone(repoUrl: String, number: Int, complethionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+        
+        let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
+        let url = repoUrl + "/issues"
+        print(url)
+        
+        let parameters: [String : AnyObject] = [
+            "milestone": number
+        ]
+        
+        Alamofire.request(.GET, url, parameters: parameters, headers: headers)
+            .responseJSON { response in
+                complethionHandler(response: response)
+                
+        }
+        
     }
     
     

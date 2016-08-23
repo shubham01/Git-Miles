@@ -19,6 +19,8 @@
 		51C86FCF1D69F065001563F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C86FCD1D69F065001563F6 /* Main.storyboard */; };
 		51C86FD11D6A0A67001563F6 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C86FD01D6A0A67001563F6 /* Milestone.swift */; };
 		51CD19EF1D6A0E1E006E8616 /* MilestonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */; };
+		51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */; };
+		51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19F41D6C2B7F006E8616 /* PullRequest.swift */; };
 		5A77106949A9A99E96B5632B /* Pods_Git_Miles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD5DA1856DB64B5691A7E76 /* Pods_Git_Miles.framework */; };
 		98E5F31C4BCE66CD9205E2E9 /* Pods_Git_MilesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA2F7BC85A4208F57D4C8F7 /* Pods_Git_MilesTests.framework */; };
 		A1900744FDE1B1330F2C073B /* Pods_Git_MilesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DCAEE19A684A34C85FBAD9 /* Pods_Git_MilesUITests.framework */; };
@@ -64,6 +66,8 @@
 		51C86FCE1D69F065001563F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51C86FD01D6A0A67001563F6 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestonesViewController.swift; sourceTree = "<group>"; };
+		51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestsViewController.swift; sourceTree = "<group>"; };
+		51CD19F41D6C2B7F006E8616 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
 		74CC4152A86561566A1806F6 /* Pods-Git MilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git MilesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Git MilesTests/Pods-Git MilesTests.release.xcconfig"; sourceTree = "<group>"; };
 		83B349D54100A102C9496F0A /* Pods-Git Miles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git Miles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Git Miles/Pods-Git Miles.debug.xcconfig"; sourceTree = "<group>"; };
 		A241F95310804EAF33951953 /* Pods-Git MilesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git MilesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Git MilesUITests/Pods-Git MilesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,9 +132,11 @@
 				5145FB9B1D642D2400C5EBE5 /* ViewController.swift */,
 				513C1C261D66F20F00D2DDE4 /* RepositoryViewController.swift */,
 				51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */,
+				51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */,
 				517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */,
 				513C1C281D66F2C100D2DDE4 /* Repository.swift */,
 				51C86FD01D6A0A67001563F6 /* Milestone.swift */,
+				51CD19F41D6C2B7F006E8616 /* PullRequest.swift */,
 				51C86FCD1D69F065001563F6 /* Main.storyboard */,
 				5145FBA01D642D2400C5EBE5 /* Assets.xcassets */,
 				5145FBA21D642D2400C5EBE5 /* LaunchScreen.storyboard */,
@@ -448,6 +454,8 @@
 				51CD19EF1D6A0E1E006E8616 /* MilestonesViewController.swift in Sources */,
 				5145FB9A1D642D2400C5EBE5 /* AppDelegate.swift in Sources */,
 				517A2E6F1D64641100E14E1F /* GitHubAPIManager.swift in Sources */,
+				51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */,
+				51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */,
 				51C86FD11D6A0A67001563F6 /* Milestone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

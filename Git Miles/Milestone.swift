@@ -19,6 +19,8 @@ class Milestone {
     var updatedAt: String
     var closedAt: String
     var dueOn: String
+    var openIssues: Int
+    var closedIssues: Int
     
     init(json: JSON) {
         id = json["id"].intValue
@@ -30,6 +32,8 @@ class Milestone {
         updatedAt = json["updated_at"].stringValue
         closedAt = json["closed_at"].stringValue
         dueOn = json["due_on"].stringValue
+        openIssues = json["open_issues"].intValue
+        closedIssues = json["closed_issues"].intValue
     }
     
 }

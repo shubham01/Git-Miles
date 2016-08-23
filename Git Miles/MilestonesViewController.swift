@@ -15,6 +15,10 @@ class MilestonesViewController: UITableViewController {
     var repo: Repository!
     let activityIndicator = UIActivityIndicatorView()
     
+    var clickedItem: Int!
+    
+    // MARK: Outlets
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +32,6 @@ class MilestonesViewController: UITableViewController {
         GitHubAPIManager.sharedInstance.getMilestones(milestonesUrl) {
             response in
             
-            debugPrint(response.result.value!)
-            
             self.activityIndicator.hidden = true
             let statusCode = response.response?.statusCode
             
@@ -41,6 +43,15 @@ class MilestonesViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
+        }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "milestoneToPullRequests") {
+            let target = segue.destinationViewController as! PullRequestsViewController
+            target.milestone = milestones[clickedItem]
+            target.repo = repo
         }
     }
     
@@ -63,12 +74,19 @@ class MilestonesViewController: UITableViewController {
             return cell
     }
     
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        clickedItem = indexPath.row
+        performSegueWithIdentifier("milestoneToPullRequests", sender: self)
+    }
+    
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         print("Detail button clicked: \(indexPath.row)")
         
         let milestone = milestones[indexPath.row]
         
-        var message = milestone.description + "Created at: \(milestone.createdAt)"
+        let message = milestone.description + "Created at: \(milestone.createdAt)"
         
         let popup = UIAlertController(title: milestone.title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         

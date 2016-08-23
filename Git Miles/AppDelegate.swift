@@ -15,7 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if (GitHubAPIManager.sharedInstance.hasOAuthToken()) {
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController")
+        } else {
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("loginViewController")
+        }
         return true
     }
 
