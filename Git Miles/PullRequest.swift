@@ -16,6 +16,7 @@ class PullRequest {
     var body: String
     var userLogin: String
     var labels: [Label] = []
+    var assignees: [String] = []
     var milestoneNumber: Int = 0
     var createdAt: String
     var updatedAt: String
@@ -29,8 +30,12 @@ class PullRequest {
         createdAt = pr["created_at"].stringValue
         updatedAt = pr["updated_at"].stringValue
         
-        for (_,label) in pr["labels"] {
+        for (_, label) in pr["labels"] {
             labels.append(Label(name: label["name"].stringValue, color: label["color"].stringValue))
+        }
+        
+        for (_, assignee) in pr["assignees"] {
+            assignees.append(assignee["login"].stringValue)
         }
     }
     

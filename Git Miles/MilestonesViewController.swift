@@ -41,7 +41,7 @@ class MilestonesViewController: UITableViewController {
                     self.milestones.append(Milestone(json: milestone))
                 }
             }
-            
+            self.activityIndicator.removeFromSuperview()
             self.tableView.reloadData()
         }
     }
