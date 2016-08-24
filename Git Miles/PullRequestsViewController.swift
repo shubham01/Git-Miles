@@ -51,6 +51,8 @@ class PullRequestsViewController: UITableViewController {
                     self.pullRequests.append(PullRequest(pr: issue))
                 }
             }
+            
+            self.activityIndicator.removeFromSuperview()
             self.tableView.reloadData()
             print(self.pullRequests.count)
         }

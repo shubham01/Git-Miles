@@ -15,7 +15,7 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     var repos: [Repository] = []
     var filteredRepos: [Repository] = []
     var shouldShowSearchResults = false
-    var clickedItem: Int!
+    var selectedRepo: Repository!
     
     let activityIndicator = UIActivityIndicatorView()
     
@@ -89,13 +89,14 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
         searchController.searchBar.placeholder = "Search repositories..."
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
+        
         tableView.tableHeaderView = searchController.searchBar
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "repoToMilestones") {
             let target = segue.destinationViewController as! MilestonesViewController
-            target.repo = shouldShowSearchResults ? filteredRepos[clickedItem] : repos[clickedItem]
+            target.repo = selectedRepo
         }
     }
     
@@ -122,7 +123,10 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        clickedItem = indexPath.row
+        selectedRepo = shouldShowSearchResults ? filteredRepos[indexPath.row] : repos[indexPath.row]
+        
+        searchController.active = false
+        
         performSegueWithIdentifier("repoToMilestones", sender: self)
     }
     
