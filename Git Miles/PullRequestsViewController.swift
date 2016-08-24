@@ -12,13 +12,19 @@ import SwiftyJSON
 
 class PullRequestsViewController: UITableViewController {
     
+    // MARK: Data variables
     var milestone: Milestone!
     var repo: Repository!
     var pullRequests: [PullRequest] = []
+    
+    // MARK: Views
     var activityIndicator = UIActivityIndicatorView()
     
+    // MARK: Member variables
+    var selectedPRIndex: Int!
     var milestoneDetailsCollapsed: Bool = true
     
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +56,21 @@ class PullRequestsViewController: UITableViewController {
         }
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toPullRequestDetails") {
+            let target = segue.destinationViewController as! PullRequestViewController
+            target.pullRequest = pullRequests[selectedPRIndex]
+        }
+    }
+    
+    // MARK: TableView
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1 + pullRequests.count
     }
@@ -70,8 +91,9 @@ class PullRequestsViewController: UITableViewController {
             
             tableView.beginUpdates()
             tableView.endUpdates()
-        } else if (indexPath.row == 1) {
-            
+        } else if (indexPath.row >= 1) {
+            selectedPRIndex = indexPath.row - 1 //PRs start from second row
+            performSegueWithIdentifier("toPullRequestDetails", sender: self)
         }
     }
     
@@ -94,6 +116,8 @@ class PullRequestsViewController: UITableViewController {
         }
         return UITableViewCell()
     }
+    
+    // MARK: Member methods
     
     func setMilestoneCellContent(cell: PRMilestoneCellContent) {
         
@@ -124,10 +148,6 @@ class PullRequestsViewController: UITableViewController {
         let completed = Double(milestone.closedIssues * 100) / Double(milestone.closedIssues + milestone.openIssues)
         cell.completedLabel.text = "\(round(completed))% completed"
         cell.openClosedLabel.text = "\(milestone.openIssues) open | \(milestone.closedIssues) closed"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
 }
