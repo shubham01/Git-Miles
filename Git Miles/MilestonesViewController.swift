@@ -27,7 +27,7 @@ class MilestonesViewController: UITableViewController {
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
-        let milestonesUrl = repo.url + "/milestones"
+        let milestonesUrl = repo.url! + "/milestones"
         
         GitHubAPIManager.sharedInstance.getMilestones(milestonesUrl) {
             response in

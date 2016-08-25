@@ -2,23 +2,16 @@
 //  Repository.swift
 //  Git Miles
 //
-//  Created by Shubham Agrawal on 19/08/16.
+//  Created by Shubham Agrawal on 25/08/16.
 //  Copyright © 2016 Shubham Agrawal. All rights reserved.
 //
 
-import SwiftyJSON
+import Foundation
+import CoreData
 
-class Repository {
-    var id : Int = 0
-    var name : String = ""
-    var url: String = ""
-    var ownerLogin: String = ""
-    
-    init(repo: JSON) {
-        self.id = repo["id"].intValue
-        self.name = repo["name"].stringValue
-        self.url = repo["url"].stringValue
-        self.ownerLogin = repo["owner"]["login"].stringValue
-    }
-    
+
+class Repository: NSManagedObject {
+
+// Insert code here to add functionality to your managed object subclass
+
 }

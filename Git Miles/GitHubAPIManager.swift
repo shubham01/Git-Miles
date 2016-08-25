@@ -55,11 +55,13 @@ class GitHubAPIManager {
     }
     
     func getRepositories(completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
         Alamofire.request(.GET, API_URL + "user/repos", headers: headers)
             .responseJSON { response in
-            print(response.request?.allHTTPHeaderFields)
-            completionHandler(response: response)
+                
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                completionHandler(response: response)
         }
     }
     

@@ -38,7 +38,7 @@ class PullRequestsViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: "PullRequestCell", bundle: nil), forCellReuseIdentifier: "pullRequestCell")
 
         
-        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url, number: milestone.number) {
+        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number) {
             response in
             
             self.activityIndicator.hidden = true

@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512AA5771D6EC3AD00F103EC /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AA5761D6EC3AD00F103EC /* DataController.swift */; };
+		512AA57D1D6EC75B00F103EC /* PullRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 512AA57C1D6EC75B00F103EC /* PullRequestCell.xib */; };
+		512AA5801D6EC77400F103EC /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 512AA57E1D6EC77400F103EC /* Models.xcdatamodeld */; };
+		512AA5851D6EC7EB00F103EC /* Repository+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */; };
+		512AA5861D6EC7EB00F103EC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AA5841D6EC7EB00F103EC /* Repository.swift */; };
+		512AA5881D6ED49000F103EC /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AA5871D6ED49000F103EC /* CoreDataHelper.swift */; };
 		513C1C271D66F20F00D2DDE4 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513C1C261D66F20F00D2DDE4 /* RepositoryViewController.swift */; };
-		513C1C291D66F2C100D2DDE4 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513C1C281D66F2C100D2DDE4 /* Repository.swift */; };
+		513C1C291D66F2C100D2DDE4 /* RepositoryOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513C1C281D66F2C100D2DDE4 /* RepositoryOld.swift */; };
 		514400F91D6CC261006B8534 /* PRMilestoneCellContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514400F71D6CC261006B8534 /* PRMilestoneCellContent.swift */; };
 		514400FA1D6CC261006B8534 /* PRMilestoneCellContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 514400F81D6CC261006B8534 /* PRMilestoneCellContent.xib */; };
 		514400FD1D6CCF05006B8534 /* PRMilestoneCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514400FB1D6CCF05006B8534 /* PRMilestoneCellHeader.swift */; };
 		514400FE1D6CCF05006B8534 /* PRMilestoneCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 514400FC1D6CCF05006B8534 /* PRMilestoneCellHeader.xib */; };
 		514401011D6CF0E1006B8534 /* PullRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514400FF1D6CF0E1006B8534 /* PullRequestCell.swift */; };
-		514401021D6CF0E1006B8534 /* PullRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 514401001D6CF0E1006B8534 /* PullRequestCell.xib */; };
 		514401051D6DAFF2006B8534 /* PullRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514401041D6DAFF2006B8534 /* PullRequestViewController.swift */; };
 		514401071D6DCA47006B8534 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514401061D6DCA47006B8534 /* ColorExtension.swift */; };
 		5145FB9A1D642D2400C5EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FB991D642D2400C5EBE5 /* AppDelegate.swift */; };
@@ -56,14 +61,19 @@
 		0FA2F7BC85A4208F57D4C8F7 /* Pods_Git_MilesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Git_MilesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		182691F0BA43FAE639F5FD9A /* Pods-Git MilesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git MilesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Git MilesTests/Pods-Git MilesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		40A889F771A2D4599D129211 /* Pods-Git Miles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git Miles.release.xcconfig"; path = "Pods/Target Support Files/Pods-Git Miles/Pods-Git Miles.release.xcconfig"; sourceTree = "<group>"; };
+		512AA5761D6EC3AD00F103EC /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		512AA57C1D6EC75B00F103EC /* PullRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullRequestCell.xib; sourceTree = "<group>"; };
+		512AA57F1D6EC77400F103EC /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Repository+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		512AA5841D6EC7EB00F103EC /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		512AA5871D6ED49000F103EC /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		513C1C261D66F20F00D2DDE4 /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
-		513C1C281D66F2C100D2DDE4 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		513C1C281D66F2C100D2DDE4 /* RepositoryOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryOld.swift; sourceTree = "<group>"; };
 		514400F71D6CC261006B8534 /* PRMilestoneCellContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRMilestoneCellContent.swift; sourceTree = "<group>"; };
 		514400F81D6CC261006B8534 /* PRMilestoneCellContent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRMilestoneCellContent.xib; sourceTree = "<group>"; };
 		514400FB1D6CCF05006B8534 /* PRMilestoneCellHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRMilestoneCellHeader.swift; sourceTree = "<group>"; };
 		514400FC1D6CCF05006B8534 /* PRMilestoneCellHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRMilestoneCellHeader.xib; sourceTree = "<group>"; };
 		514400FF1D6CF0E1006B8534 /* PullRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestCell.swift; sourceTree = "<group>"; };
-		514401001D6CF0E1006B8534 /* PullRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullRequestCell.xib; sourceTree = "<group>"; };
 		514401041D6DAFF2006B8534 /* PullRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestViewController.swift; sourceTree = "<group>"; };
 		514401061D6DCA47006B8534 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		5145FB961D642D2400C5EBE5 /* Git Miles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git Miles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,7 +132,7 @@
 		514401031D6DAEF5006B8534 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				513C1C281D66F2C100D2DDE4 /* Repository.swift */,
+				513C1C281D66F2C100D2DDE4 /* RepositoryOld.swift */,
 				51C86FD01D6A0A67001563F6 /* Milestone.swift */,
 				51CD19F41D6C2B7F006E8616 /* PullRequest.swift */,
 			);
@@ -132,6 +142,8 @@
 		514401081D6DCD84006B8534 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */,
+				512AA5871D6ED49000F103EC /* CoreDataHelper.swift */,
 				514401061D6DCA47006B8534 /* ColorExtension.swift */,
 			);
 			name = Utility;
@@ -162,13 +174,13 @@
 		5145FB981D642D2400C5EBE5 /* Git Miles */ = {
 			isa = PBXGroup;
 			children = (
+				512AA57C1D6EC75B00F103EC /* PullRequestCell.xib */,
 				5145FB991D642D2400C5EBE5 /* AppDelegate.swift */,
 				5145FB9B1D642D2400C5EBE5 /* ViewController.swift */,
 				513C1C261D66F20F00D2DDE4 /* RepositoryViewController.swift */,
 				51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */,
 				51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */,
 				514401041D6DAFF2006B8534 /* PullRequestViewController.swift */,
-				517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */,
 				514401031D6DAEF5006B8534 /* Resources */,
 				514401081D6DCD84006B8534 /* Utility */,
 				51C86FCD1D69F065001563F6 /* Main.storyboard */,
@@ -180,7 +192,10 @@
 				514400FB1D6CCF05006B8534 /* PRMilestoneCellHeader.swift */,
 				514400FC1D6CCF05006B8534 /* PRMilestoneCellHeader.xib */,
 				514400FF1D6CF0E1006B8534 /* PullRequestCell.swift */,
-				514401001D6CF0E1006B8534 /* PullRequestCell.xib */,
+				512AA5761D6EC3AD00F103EC /* DataController.swift */,
+				512AA57E1D6EC77400F103EC /* Models.xcdatamodeld */,
+				512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */,
+				512AA5841D6EC7EB00F103EC /* Repository.swift */,
 			);
 			path = "Git Miles";
 			sourceTree = "<group>";
@@ -338,7 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				514401021D6CF0E1006B8534 /* PullRequestCell.xib in Resources */,
+				512AA57D1D6EC75B00F103EC /* PullRequestCell.xib in Resources */,
 				514400FA1D6CC261006B8534 /* PRMilestoneCellContent.xib in Resources */,
 				51C86FCF1D69F065001563F6 /* Main.storyboard in Resources */,
 				5145FBA41D642D2400C5EBE5 /* LaunchScreen.storyboard in Resources */,
@@ -494,17 +509,22 @@
 				513C1C271D66F20F00D2DDE4 /* RepositoryViewController.swift in Sources */,
 				5145FB9C1D642D2400C5EBE5 /* ViewController.swift in Sources */,
 				514401011D6CF0E1006B8534 /* PullRequestCell.swift in Sources */,
-				513C1C291D66F2C100D2DDE4 /* Repository.swift in Sources */,
+				513C1C291D66F2C100D2DDE4 /* RepositoryOld.swift in Sources */,
 				51CD19EF1D6A0E1E006E8616 /* MilestonesViewController.swift in Sources */,
 				514401071D6DCA47006B8534 /* ColorExtension.swift in Sources */,
 				514401051D6DAFF2006B8534 /* PullRequestViewController.swift in Sources */,
+				512AA5851D6EC7EB00F103EC /* Repository+CoreDataProperties.swift in Sources */,
 				514400F91D6CC261006B8534 /* PRMilestoneCellContent.swift in Sources */,
 				5145FB9A1D642D2400C5EBE5 /* AppDelegate.swift in Sources */,
 				517A2E6F1D64641100E14E1F /* GitHubAPIManager.swift in Sources */,
 				514400FD1D6CCF05006B8534 /* PRMilestoneCellHeader.swift in Sources */,
 				51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */,
+				512AA5881D6ED49000F103EC /* CoreDataHelper.swift in Sources */,
+				512AA5771D6EC3AD00F103EC /* DataController.swift in Sources */,
 				51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */,
 				51C86FD11D6A0A67001563F6 /* Milestone.swift in Sources */,
+				512AA5801D6EC77400F103EC /* Models.xcdatamodeld in Sources */,
+				512AA5861D6EC7EB00F103EC /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +780,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		512AA57E1D6EC77400F103EC /* Models.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				512AA57F1D6EC77400F103EC /* Models.xcdatamodel */,
+			);
+			currentVersion = 512AA57F1D6EC77400F103EC /* Models.xcdatamodel */;
+			path = Models.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5145FB8E1D642D2400C5EBE5 /* Project object */;
 }

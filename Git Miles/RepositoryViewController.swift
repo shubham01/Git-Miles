@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 import SwiftyJSON
+import CoreData
 
-class RepositoryViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
+class RepositoryViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate,
+    NSFetchedResultsControllerDelegate {
     
-    var repos: [Repository] = []
     var filteredRepos: [Repository] = []
     var shouldShowSearchResults = false
     var selectedRepo: Repository!
@@ -20,36 +21,119 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     let activityIndicator = UIActivityIndicatorView()
     
     var searchController: UISearchController!
+    var fetchedResultsController: NSFetchedResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         debugPrint("Getting repositories")
         
-        activityIndicator.center = self.view.center
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        self.view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
+        //Load repos from core data
+        
+//        repos = CoreDataHelper.fetch  Repos()
+//        if (repos.count > 0) {
+//           tableView.reloadData()
+//        } else {
+//            showActivityIndicator()
+//        }
+        
+        configureFetchedResultsController()
         
         GitHubAPIManager.sharedInstance.getRepositories() {
             response in
-            
-            self.activityIndicator.hidden = true
             
             let statusCode = response.response?.statusCode
             print("status code: \(statusCode)")
             if (statusCode >= 200 && statusCode < 300) {
                 let json = JSON(response.result.value!)
-                for (_, repo) in json {
-                    self.repos.append(Repository(repo: repo))
-                }
+                
+                //store repos
+                CoreDataHelper.storeRepos(json)
+//                self.repos = CoreDataHelper.fetchRepos()
             }
             
             self.activityIndicator.removeFromSuperview()
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
         }
         
         configureSearchController()
     }
+    
+    // MARK: User Interface
+    
+    func showActivityIndicator() {
+        activityIndicator.center = self.view.center
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
+    // MARK: FetchedResultsController
+    
+    func configureFetchedResultsController() {
+        let fetchRequest = NSFetchRequest(entityName: "Repository")
+        let fetchSort = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [fetchSort]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                    managedObjectContext: DataController.sharedInstance.managedObjectContext,
+                    sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Controller could not perform fetch: \(error)")
+        }
+    }
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        // 1
+        switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+            
+        default: break
+            
+        }
+        
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        // 2
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+            
+        }
+    }
+    
+    // MARK: Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "repoToMilestones") {
+            let target = segue.destinationViewController as! MilestonesViewController
+            target.repo = selectedRepo
+        }
+    }
+    
+    // MARK: SearchController
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         shouldShowSearchResults = true
@@ -72,11 +156,13 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
         
+        let repos = fetchedResultsController.fetchedObjects as! [Repository]
+        
         filteredRepos = repos.filter({ (repo) -> Bool in
             if searchString == "" {
                 return true
             }
-            return (repo.name.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch)) != nil
+            return (repo.name!.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch)) != nil
         })
         
         tableView.reloadData()
@@ -93,29 +179,37 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
         tableView.tableHeaderView = searchController.searchBar
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "repoToMilestones") {
-            let target = segue.destinationViewController as! MilestonesViewController
-            target.repo = selectedRepo
-        }
-    }
+    // MARK: TableView
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        guard let sectionCount = fetchedResultsController.sections?.count else {
+            return 0
+        }
+        return sectionCount
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shouldShowSearchResults ? filteredRepos.count : repos.count
+        if shouldShowSearchResults {
+            return filteredRepos.count
+        }
+        guard let sectionData = fetchedResultsController.sections?[section] else {
+            return 0
+        }
+        return sectionData.numberOfObjects
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
     -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("repositoryCell", forIndexPath: indexPath)
-        let repo = (shouldShowSearchResults ? filteredRepos[indexPath.row] : repos[indexPath.row])
-            as Repository
-        cell.textLabel?.text = repo.name
-        cell.detailTextLabel?.text = String(repo.ownerLogin)
+        let repo: Repository!
+        if shouldShowSearchResults {
+            repo = filteredRepos[indexPath.row]
+        } else {
+            repo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
+        }
+        cell.textLabel?.text = repo.name!
+        cell.detailTextLabel?.text = repo.ownerLogin!
         
         return cell
     }
@@ -123,7 +217,12 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        selectedRepo = shouldShowSearchResults ? filteredRepos[indexPath.row] : repos[indexPath.row]
+        
+        if shouldShowSearchResults {
+            selectedRepo = filteredRepos[indexPath.row]
+        } else {
+            selectedRepo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
+        }
         
         searchController.active = false
         
