@@ -16,7 +16,7 @@ class PullRequest {
     var body: String
     var userLogin: String
     var labels: [Label] = []
-    var assignees: [String] = []
+    var assignees: [Assignee] = []
     var milestoneNumber: Int = 0
     var createdAt: String
     var updatedAt: String
@@ -35,7 +35,7 @@ class PullRequest {
         }
         
         for (_, assignee) in pr["assignees"] {
-            assignees.append(assignee["login"].stringValue)
+            assignees.append(Assignee(login: assignee["login"].stringValue, avatar: assignee["avatar_url"].stringValue))
         }
     }
     
@@ -46,6 +46,16 @@ class PullRequest {
         init(name: String, color: String) {
             self.name = name
             self.color = color
+        }
+    }
+    
+    struct Assignee {
+        var login: String
+        var avatar: String
+        
+        init(login: String, avatar: String) {
+            self.login = login
+            self.avatar = avatar
         }
     }
     
