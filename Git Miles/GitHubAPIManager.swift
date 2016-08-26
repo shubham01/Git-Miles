@@ -26,7 +26,7 @@ class GitHubAPIManager {
 
     func hasOAuthToken() -> Bool {
 //        keychain[KEY_TOKEN] = nil
-        if let token = try? keychain.getString(KEY_TOKEN){
+        if let token = try? keychain.getString(KEY_TOKEN) {
             return token != nil
         }
         return false
@@ -66,9 +66,11 @@ class GitHubAPIManager {
     }
     
     func getMilestones(url: String, completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
         Alamofire.request(.GET, url, headers: headers)
             .responseJSON { response in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 completionHandler(response: response)
         }
     }

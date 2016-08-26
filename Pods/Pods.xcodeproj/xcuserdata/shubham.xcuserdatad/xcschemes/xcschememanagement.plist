@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KeychainAccess.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,7 +34,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>libwebp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,12 +52,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05094CC4A047119F7ADC14EE74C4881C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0AE9828D71E520A3399D63C284D4266A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61E419C4BB701D174C3FF5C95B924CC6</key>
+		<key>111036CCDBDEC2547ABFB4F607F98360</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70153CCC930F588CDA7E35027DBBF4B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB38A081F7A15C963F1442171DB22D96</key>
+		<key>8B8CB395115B1872B14C4316BC9DB418</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C8759C6075500E12D0AEFC699D89C99C</key>
+		<key>905649524C02C6CB20B2283C022DB837</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB38A081F7A15C963F1442171DB22D96</key>
 		<dict>
 			<key>primary</key>
 			<true/>

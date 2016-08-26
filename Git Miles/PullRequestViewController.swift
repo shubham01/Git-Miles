@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+import AlamofireImage
 
 class PullRequestViewController: UIViewController {
 
@@ -62,10 +64,6 @@ extension PullRequestViewController: UITableViewDataSource, UITableViewDelegate 
         return pullRequest.assignees.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 25
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if(tableView == labelsTable) {
             let cell = tableView.dequeueReusableCellWithIdentifier("prLabelCell", forIndexPath:
@@ -76,6 +74,14 @@ extension PullRequestViewController: UITableViewDataSource, UITableViewDelegate 
             let cell = tableView.dequeueReusableCellWithIdentifier("prAssigneeCell", forIndexPath:
                 indexPath)
             cell.textLabel?.text = pullRequest.assignees[indexPath.row].login
+            
+            let url = NSURL(string: (pullRequest.assignees[indexPath.row].avatar))
+            print(url)
+            
+            let placeHolderImage = UIImage(named: "avatar_placeholder")
+            
+            cell.imageView?.af_setImageWithURL(url!, placeholderImage: placeHolderImage)
+            
             return cell
         }
     }
