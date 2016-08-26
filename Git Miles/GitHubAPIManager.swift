@@ -75,7 +75,7 @@ class GitHubAPIManager {
         }
     }
     
-    func getPullRequestsForMilestone(repoUrl: String, number: Int, complethionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+    func getPullRequestsForMilestone(repoUrl: String, number: NSNumber, complethionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         
         let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
         let url = repoUrl + "/issues"

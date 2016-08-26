@@ -29,9 +29,11 @@
 		5145FBA41D642D2400C5EBE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5145FBA21D642D2400C5EBE5 /* LaunchScreen.storyboard */; };
 		5145FBAF1D642D2400C5EBE5 /* Git_MilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FBAE1D642D2400C5EBE5 /* Git_MilesTests.swift */; };
 		5145FBBA1D642D2400C5EBE5 /* Git_MilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FBB91D642D2400C5EBE5 /* Git_MilesUITests.swift */; };
+		516AD2E31D7046C00043DE26 /* Milestone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */; };
+		516AD2E41D7046C00043DE26 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E21D7046C00043DE26 /* Milestone.swift */; };
 		517A2E6F1D64641100E14E1F /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */; };
 		51C86FCF1D69F065001563F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C86FCD1D69F065001563F6 /* Main.storyboard */; };
-		51C86FD11D6A0A67001563F6 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C86FD01D6A0A67001563F6 /* Milestone.swift */; };
+		51C86FD11D6A0A67001563F6 /* MilestoneOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */; };
 		51CD19EF1D6A0E1E006E8616 /* MilestonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */; };
 		51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */; };
 		51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19F41D6C2B7F006E8616 /* PullRequest.swift */; };
@@ -90,9 +92,11 @@
 		5145FBB51D642D2400C5EBE5 /* Git MilesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Git MilesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5145FBB91D642D2400C5EBE5 /* Git_MilesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Git_MilesUITests.swift; sourceTree = "<group>"; };
 		5145FBBB1D642D2400C5EBE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Milestone+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		516AD2E21D7046C00043DE26 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
 		51C86FCE1D69F065001563F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		51C86FD01D6A0A67001563F6 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneOld.swift; sourceTree = "<group>"; };
 		51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestonesViewController.swift; sourceTree = "<group>"; };
 		51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestsViewController.swift; sourceTree = "<group>"; };
 		51CD19F41D6C2B7F006E8616 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
@@ -135,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				513C1C281D66F2C100D2DDE4 /* RepositoryOld.swift */,
-				51C86FD01D6A0A67001563F6 /* Milestone.swift */,
+				51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */,
 				51CD19F41D6C2B7F006E8616 /* PullRequest.swift */,
 			);
 			name = Resources;
@@ -199,6 +203,8 @@
 				512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */,
 				512AA5841D6EC7EB00F103EC /* Repository.swift */,
 				5135E2671D6F27E300E3C29C /* PRLabelCell.swift */,
+				516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */,
+				516AD2E21D7046C00043DE26 /* Milestone.swift */,
 			);
 			path = "Git Miles";
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				TargetAttributes = {
 					5145FB951D642D2400C5EBE5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = HKUMAKUTS4;
 					};
 					5145FBA91D642D2400C5EBE5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -520,13 +527,15 @@
 				514400F91D6CC261006B8534 /* PRMilestoneCellContent.swift in Sources */,
 				5145FB9A1D642D2400C5EBE5 /* AppDelegate.swift in Sources */,
 				517A2E6F1D64641100E14E1F /* GitHubAPIManager.swift in Sources */,
+				516AD2E31D7046C00043DE26 /* Milestone+CoreDataProperties.swift in Sources */,
 				514400FD1D6CCF05006B8534 /* PRMilestoneCellHeader.swift in Sources */,
 				51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */,
 				512AA5881D6ED49000F103EC /* CoreDataHelper.swift in Sources */,
 				5135E2681D6F27E300E3C29C /* PRLabelCell.swift in Sources */,
 				512AA5771D6EC3AD00F103EC /* DataController.swift in Sources */,
 				51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */,
-				51C86FD11D6A0A67001563F6 /* Milestone.swift in Sources */,
+				516AD2E41D7046C00043DE26 /* Milestone.swift in Sources */,
+				51C86FD11D6A0A67001563F6 /* MilestoneOld.swift in Sources */,
 				512AA5801D6EC77400F103EC /* Models.xcdatamodeld in Sources */,
 				512AA5861D6EC7EB00F103EC /* Repository.swift in Sources */,
 			);
@@ -675,6 +684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Git Miles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.practo.Git-Miles";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -688,6 +698,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Git Miles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.practo.Git-Miles";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if (GitHubAPIManager.sharedInstance.hasOAuthToken()) {
-            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController")
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("mainTabController")
         } else {
             self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("loginViewController")
         }

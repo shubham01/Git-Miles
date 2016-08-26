@@ -8,19 +8,23 @@
 
 import UIKit
 import SwiftyJSON
+import CoreData
 
-class MilestonesViewController: UITableViewController {
+class MilestonesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var milestones:[Milestone] = []
     var repo: Repository!
     let activityIndicator = UIActivityIndicatorView()
     
-    var clickedItem: Int!
+    var selectedMilestone: Milestone!
+    
+    var fetchedResultsController: NSFetchedResultsController!
     
     // MARK: Outlets
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureFetchedResultsController()
         
         activityIndicator.center = self.view.center
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
@@ -36,11 +40,10 @@ class MilestonesViewController: UITableViewController {
             let statusCode = response.response?.statusCode
             
             if (statusCode >= 200 && statusCode < 300) {
-                let json = JSON(response.result.value!)
-                for (_, milestone) in json {
-                    self.milestones.append(Milestone(json: milestone))
-                }
+                let milestones = JSON(response.result.value!)
+                CoreDataHelper.storeMilestones(milestones, repo: self.repo)
             }
+            
             self.activityIndicator.removeFromSuperview()
             self.tableView.reloadData()
         }
@@ -50,26 +53,34 @@ class MilestonesViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "milestoneToPullRequests") {
             let target = segue.destinationViewController as! PullRequestsViewController
-            target.milestone = milestones[clickedItem]
+            target.milestone = selectedMilestone
             target.repo = repo
         }
     }
     
+    // MARK: TableView
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        guard let sectionCount = fetchedResultsController.sections?.count else {
+            return 0
+        }
+        return sectionCount
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return milestones.count
+        guard let sectionData = fetchedResultsController.sections?[section] else {
+            return 0
+        }
+        return sectionData.numberOfObjects
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
         -> UITableViewCell {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("milestoneCell", forIndexPath: indexPath)
-            let milestone = milestones[indexPath.row] as Milestone
-            cell.textLabel?.text = milestone.title
-            cell.detailTextLabel?.text = milestone.description
+            let milestone = fetchedResultsController.objectAtIndexPath(indexPath) as! Milestone
+            cell.textLabel?.text = milestone.title!
+            cell.detailTextLabel?.text = milestone.descriptionBody!
             
             return cell
     }
@@ -77,26 +88,69 @@ class MilestonesViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        clickedItem = indexPath.row
+        selectedMilestone = fetchedResultsController.objectAtIndexPath(indexPath) as! Milestone
         performSegueWithIdentifier("milestoneToPullRequests", sender: self)
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        print("Detail button clicked: \(indexPath.row)")
+    // MARK: FetchedResultsController
+    
+    func configureFetchedResultsController() {
+        let fetchRequest = NSFetchRequest(entityName: "Milestone")
+        let fetchSort = NSSortDescriptor(key: "dueOn", ascending: false)
+        fetchRequest.sortDescriptors = [fetchSort]
         
-        let milestone = milestones[indexPath.row]
+        let predicate = NSPredicate(format: "repo == %@", repo)
+        fetchRequest.predicate = predicate
         
-        let message = milestone.description + "Created at: \(milestone.createdAt)"
         
-        let popup = UIAlertController(title: milestone.title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                              managedObjectContext: DataController.sharedInstance.managedObjectContext,
+                                                              sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
         
-        popup.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-        
-        presentViewController(popup, animated: true, completion: nil)
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Controller could not perform fetch: \(error)")
+        }
     }
     
-    func prepareMilestoneDetails(milestone: Milestone) -> String {
-        return ""
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        // 1
+        switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+            
+        default: break
+            
+        }
+        
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        // 2
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+            
+        }
     }
     
     

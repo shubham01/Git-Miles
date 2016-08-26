@@ -24,8 +24,7 @@ class PullRequestViewController: UIViewController {
     @IBOutlet weak var assigneesTable: UITableView!
     
     var pullRequest: PullRequest!
-    
-    // MARK
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,8 +45,23 @@ class PullRequestViewController: UIViewController {
             stateLabel.backgroundColor = UIColor(colorHex: 0x2ecc71, alpha: 0.8)
         }
         
-        createdLabel.text = pullRequest.createdAt
-        updatedLabel.text = pullRequest.updatedAt
+        //To make NSDate objects from ISO8601 timestamp
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+        
+        //To convert NSDate object to string
+        let dateFormatterOut = NSDateFormatter()
+        dateFormatterOut.locale = NSLocale(localeIdentifier: "en_IN")
+        
+        dateFormatterOut.dateFormat = "HH:mm, MMM d yyyy"
+        
+        let createdDate = dateFormatter.dateFromString(pullRequest.createdAt)
+        createdLabel.text = "Created on \(dateFormatterOut.stringFromDate(createdDate!))"
+        
+        let updatedDate = dateFormatter.dateFromString(pullRequest.updatedAt)
+        updatedLabel.text = "Updated on \(dateFormatterOut.stringFromDate(updatedDate!))"
+        
         descriptionLabel.text = pullRequest.body
     }
 

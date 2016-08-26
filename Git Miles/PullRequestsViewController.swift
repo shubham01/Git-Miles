@@ -34,16 +34,13 @@ class PullRequestsViewController: UITableViewController {
         activityIndicator.startAnimating()
         
         tableView.registerNib(UINib(nibName: "PRMilestoneCellContent", bundle: nil), forCellReuseIdentifier: "prMilestoneCellContent")
-        
         tableView.registerNib(UINib(nibName: "PullRequestCell", bundle: nil), forCellReuseIdentifier: "pullRequestCell")
 
         
-        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number) {
+        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number!) {
             response in
             
             self.activityIndicator.hidden = true
-            
-            print(response.response?.statusCode)
             
             let json = JSON(response.result.value!)
             for (_,issue) in json {
@@ -123,8 +120,8 @@ class PullRequestsViewController: UITableViewController {
     
     func setMilestoneCellContent(cell: PRMilestoneCellContent) {
         
-        cell.titleLabel.text = milestone.title
-        cell.descriptionLabel.text = milestone.description
+        cell.titleLabel.text = milestone.title!
+        cell.descriptionLabel.text = milestone.descriptionBody!
         
         //To make NSDate objects from ISO8601 timestamp
         let dateFormatter = NSDateFormatter()
@@ -136,20 +133,21 @@ class PullRequestsViewController: UITableViewController {
         dateFormatterOut.locale = NSLocale(localeIdentifier: "en_IN")
         
         dateFormatterOut.dateFormat = "HH:mm, MMM d yyyy"
-        let updatedDate = dateFormatter.dateFromString(milestone.updatedAt)
+        let updatedDate = dateFormatter.dateFromString(milestone.updatedAt!)
         cell.lastUpdatedLabel.text = "Updated at \(dateFormatterOut.stringFromDate(updatedDate!))"
         
         if (milestone.dueOn == "") {
             cell.dueOnLabel.text = "No due date"
         } else {
             dateFormatterOut.dateFormat = "MMM d yyyy"
-            let dueDate = dateFormatter.dateFromString(milestone.dueOn)
+            let dueDate = dateFormatter.dateFromString(milestone.dueOn!)
             cell.dueOnLabel.text = "Due on \(dateFormatterOut.stringFromDate(dueDate!))"
         }
         
-        let completed = Double(milestone.closedIssues * 100) / Double(milestone.closedIssues + milestone.openIssues)
+        let completed = (Double(milestone.closedIssues!) * 100.0) /
+                        (Double(milestone.closedIssues!) + Double(milestone.openIssues!))
         cell.completedLabel.text = "\(round(completed))% completed"
-        cell.openClosedLabel.text = "\(milestone.openIssues) open | \(milestone.closedIssues) closed"
+        cell.openClosedLabel.text = "\(milestone.openIssues!) open | \(milestone.closedIssues!) closed"
     }
 
 }
