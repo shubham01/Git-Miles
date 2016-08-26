@@ -27,14 +27,7 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
         super.viewDidLoad()
         debugPrint("Getting repositories")
         
-        //Load repos from core data
-        
-//        repos = CoreDataHelper.fetch  Repos()
-//        if (repos.count > 0) {
-//           tableView.reloadData()
-//        } else {
-//            showActivityIndicator()
-//        }
+        tableView.registerNib(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "repositoryCell")
         
         configureFetchedResultsController()
         
@@ -198,18 +191,24 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
         return sectionData.numberOfObjects
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 58
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
     -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("repositoryCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("repositoryCell", forIndexPath: indexPath) as! RepositoryCell
         let repo: Repository!
         if shouldShowSearchResults {
             repo = filteredRepos[indexPath.row]
         } else {
             repo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
         }
-        cell.textLabel?.text = repo.name!
-        cell.detailTextLabel?.text = repo.ownerLogin!
+        
+//        cell.titleLabel.text = repo.name
+//        cell.subtitleLabel.text = repo.ownerLogin
+        cell.setupCell(repo)
         
         return cell
     }

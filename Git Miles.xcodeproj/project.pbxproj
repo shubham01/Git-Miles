@@ -31,6 +31,8 @@
 		5145FBBA1D642D2400C5EBE5 /* Git_MilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FBB91D642D2400C5EBE5 /* Git_MilesUITests.swift */; };
 		516AD2E31D7046C00043DE26 /* Milestone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */; };
 		516AD2E41D7046C00043DE26 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E21D7046C00043DE26 /* Milestone.swift */; };
+		516AD2EB1D7077F70043DE26 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E91D7077F70043DE26 /* RepositoryCell.swift */; };
+		516AD2EC1D7077F70043DE26 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516AD2EA1D7077F70043DE26 /* RepositoryCell.xib */; };
 		517A2E6F1D64641100E14E1F /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */; };
 		51C86FCF1D69F065001563F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51C86FCD1D69F065001563F6 /* Main.storyboard */; };
 		51C86FD11D6A0A67001563F6 /* MilestoneOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */; };
@@ -94,6 +96,8 @@
 		5145FBBB1D642D2400C5EBE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Milestone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		516AD2E21D7046C00043DE26 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		516AD2E91D7077F70043DE26 /* RepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
+		516AD2EA1D7077F70043DE26 /* RepositoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
 		51C86FCE1D69F065001563F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneOld.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				5135E2671D6F27E300E3C29C /* PRLabelCell.swift */,
 				516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */,
 				516AD2E21D7046C00043DE26 /* Milestone.swift */,
+				516AD2E91D7077F70043DE26 /* RepositoryCell.swift */,
+				516AD2EA1D7077F70043DE26 /* RepositoryCell.xib */,
 			);
 			path = "Git Miles";
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				512AA57D1D6EC75B00F103EC /* PullRequestCell.xib in Resources */,
+				516AD2EC1D7077F70043DE26 /* RepositoryCell.xib in Resources */,
 				514400FA1D6CC261006B8534 /* PRMilestoneCellContent.xib in Resources */,
 				51C86FCF1D69F065001563F6 /* Main.storyboard in Resources */,
 				5145FBA41D642D2400C5EBE5 /* LaunchScreen.storyboard in Resources */,
@@ -532,6 +539,7 @@
 				51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */,
 				512AA5881D6ED49000F103EC /* CoreDataHelper.swift in Sources */,
 				5135E2681D6F27E300E3C29C /* PRLabelCell.swift in Sources */,
+				516AD2EB1D7077F70043DE26 /* RepositoryCell.swift in Sources */,
 				512AA5771D6EC3AD00F103EC /* DataController.swift in Sources */,
 				51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */,
 				516AD2E41D7046C00043DE26 /* Milestone.swift in Sources */,
