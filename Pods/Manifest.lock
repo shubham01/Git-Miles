@@ -3,51 +3,23 @@ PODS:
   - AlamofireImage (2.4.1):
     - Alamofire (~> 3.3)
   - KeychainAccess (2.3.6)
-  - libwebp (0.5.0):
-    - libwebp/core (= 0.5.0)
-    - libwebp/dec (= 0.5.0)
-    - libwebp/demux (= 0.5.0)
-    - libwebp/dsp (= 0.5.0)
-    - libwebp/enc (= 0.5.0)
-    - libwebp/mux (= 0.5.0)
-    - libwebp/utils (= 0.5.0)
-    - libwebp/webp (= 0.5.0)
-  - libwebp/core (0.5.0):
-    - libwebp/webp
-  - libwebp/dec (0.5.0):
-    - libwebp/core
-  - libwebp/demux (0.5.0):
-    - libwebp/core
-  - libwebp/dsp (0.5.0):
-    - libwebp/core
-  - libwebp/enc (0.5.0):
-    - libwebp/core
-  - libwebp/mux (0.5.0):
-    - libwebp/core
-  - libwebp/utils (0.5.0):
-    - libwebp/core
-  - libwebp/webp (0.5.0)
-  - SDWebImage/Core (3.8.1)
-  - SDWebImage/WebP (3.8.1):
-    - libwebp
-    - SDWebImage/Core
   - SwiftyJSON (2.3.2)
+  - TTGSnackbar (1.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
   - AlamofireImage (~> 2.0)
   - KeychainAccess
-  - SDWebImage/WebP
   - SwiftyJSON
+  - TTGSnackbar
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
   KeychainAccess: 7f10e2ef998ddf954a64d5d608be08677774684d
-  libwebp: 68ba2001ba6806ee52837ebd77a551a0b6567e4e
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  TTGSnackbar: fbf183835e445fcac990e2ab2770479162d46f1b
 
-PODFILE CHECKSUM: 3587da8ddcb7f7772495746daf3cc8d4f87d9e30
+PODFILE CHECKSUM: 870e1c4c7779b2f03afc9565f916b42a54b443e7
 
 COCOAPODS: 1.0.1

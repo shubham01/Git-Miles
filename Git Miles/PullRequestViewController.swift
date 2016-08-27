@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SDWebImage
 import AlamofireImage
 
 class PullRequestViewController: UIViewController {

@@ -24,6 +24,7 @@
 		514401051D6DAFF2006B8534 /* PullRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514401041D6DAFF2006B8534 /* PullRequestViewController.swift */; };
 		514401071D6DCA47006B8534 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514401061D6DCA47006B8534 /* ColorExtension.swift */; };
 		51445B431D70E83A00C57683 /* FavoriteRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51445B421D70E83A00C57683 /* FavoriteRepositoryViewController.swift */; };
+		51445B471D71D14500C57683 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51445B461D71D14500C57683 /* ImageProvider.swift */; };
 		5145FB9A1D642D2400C5EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FB991D642D2400C5EBE5 /* AppDelegate.swift */; };
 		5145FB9C1D642D2400C5EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FB9B1D642D2400C5EBE5 /* ViewController.swift */; };
 		5145FBA11D642D2400C5EBE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5145FBA01D642D2400C5EBE5 /* Assets.xcassets */; };
@@ -84,6 +85,7 @@
 		514401041D6DAFF2006B8534 /* PullRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestViewController.swift; sourceTree = "<group>"; };
 		514401061D6DCA47006B8534 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		51445B421D70E83A00C57683 /* FavoriteRepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRepositoryViewController.swift; sourceTree = "<group>"; };
+		51445B461D71D14500C57683 /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		5145FB961D642D2400C5EBE5 /* Git Miles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git Miles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5145FB991D642D2400C5EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5145FB9B1D642D2400C5EBE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				517A2E6E1D64641100E14E1F /* GitHubAPIManager.swift */,
 				512AA5871D6ED49000F103EC /* CoreDataHelper.swift */,
 				514401061D6DCA47006B8534 /* ColorExtension.swift */,
+				51445B461D71D14500C57683 /* ImageProvider.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				516AD2E31D7046C00043DE26 /* Milestone+CoreDataProperties.swift in Sources */,
 				514400FD1D6CCF05006B8534 /* PRMilestoneCellHeader.swift in Sources */,
 				51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */,
+				51445B471D71D14500C57683 /* ImageProvider.swift in Sources */,
 				512AA5881D6ED49000F103EC /* CoreDataHelper.swift in Sources */,
 				5135E2681D6F27E300E3C29C /* PRLabelCell.swift in Sources */,
 				516AD2EB1D7077F70043DE26 /* RepositoryCell.swift in Sources */,

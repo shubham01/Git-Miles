@@ -20,8 +20,6 @@ class FavoriteRepositoryViewController: UITableViewController, NSFetchedResultsC
         
         tableView.registerNib(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "repositoryCell")
         configureFetchedResultsController()
-        
-        self.tableView.allowsMultipleSelectionDuringEditing = false
 
 //        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -47,17 +45,6 @@ class FavoriteRepositoryViewController: UITableViewController, NSFetchedResultsC
         return sectionCount
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let repo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
-        CoreDataHelper.setFavorite(repo, value: 0)
-        
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sectionData = fetchedResultsController.sections?[section] else {
             return 0
@@ -66,7 +53,7 @@ class FavoriteRepositoryViewController: UITableViewController, NSFetchedResultsC
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
+        return 60.0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)

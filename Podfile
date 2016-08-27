@@ -10,8 +10,8 @@ target 'Git Miles' do
   pod 'Alamofire', '~> 3.4'
   pod 'SwiftyJSON'
   pod 'KeychainAccess'
-  pod 'SDWebImage/WebP'
   pod 'AlamofireImage', '~> 2.0'
+  pod 'TTGSnackbar'
   
   target 'Git MilesTests' do
     inherit! :search_paths

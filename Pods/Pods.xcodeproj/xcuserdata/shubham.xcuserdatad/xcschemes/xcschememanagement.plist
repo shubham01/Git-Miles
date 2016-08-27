@@ -34,17 +34,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>libwebp.xcscheme</key>
+		<key>TTGSnackbar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,12 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>111036CCDBDEC2547ABFB4F607F98360</key>
+		<key>2155596C8818EE550C6946AABCCEE908</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>70153CCC930F588CDA7E35027DBBF4B7</key>
+		<key>56E4B1B5538A41E39A324E5F3DD8D78C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,17 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B8CB395115B1872B14C4316BC9DB418</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>905649524C02C6CB20B2283C022DB837</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>AB38A081F7A15C963F1442171DB22D96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D836DC2367ADE8BDD3FC8D42F1AF07D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

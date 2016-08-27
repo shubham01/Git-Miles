@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TTGSnackbar
 
 class RepositoryCell: UITableViewCell {
     
@@ -16,7 +17,7 @@ class RepositoryCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,18 +34,28 @@ class RepositoryCell: UITableViewCell {
         self.repo = repo
         titleLabel.text = repo.name!
         subtitleLabel.text = repo.ownerLogin!
-        let buttonImage = UIImage(named: "star_black")
-        favoriteButton.setImage(buttonImage, forState: UIControlState.Normal)
+        
+        favoriteButton.setImage(ImageProvider.getFavoriteImage(repo.isFavorite),
+                                forState: UIControlState.Normal)
+        
     }
     
     @IBAction func onClickFav(sender: UIButton) {
-        print("fav clicked")
+        
         if (repo.isFavorite == nil || repo.isFavorite == 0) {
-            print("adding to fav")
+            //Add to favorite
+            
             CoreDataHelper.setFavorite(repo, value: 1)
         } else {
-            print("removing from fav")
+            //Eemove from favorite
+            
             CoreDataHelper.setFavorite(repo, value: 0)
+            let snackbar = TTGSnackbar.init(message: "Removed from favorites", duration: .Middle, actionText: "Undo") { (snackbar) in
+                CoreDataHelper.setFavorite(self.repo, value: 1)
+            }
+            
+            snackbar.bottomMargin = 52.0
+            snackbar.show()
         }
     }
     
