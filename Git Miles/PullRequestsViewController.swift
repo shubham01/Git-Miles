@@ -12,15 +12,13 @@ import SwiftyJSON
 
 class PullRequestsViewController: UITableViewController {
     
-    // MARK: Data variables
+    // MARK: Member variables
     var milestone: Milestone!
     var repo: Repository!
     var pullRequests: [PullRequest] = []
     
-    // MARK: Views
     var activityIndicator = UIActivityIndicatorView()
     
-    // MARK: Member variables
     var selectedPRIndex: Int!
     var milestoneDetailsCollapsed: Bool = true
     
@@ -77,7 +75,7 @@ class PullRequestsViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //        return UITableViewAutomaticDimension
         if (indexPath.row == 0) {
-            return milestoneDetailsCollapsed ? 44 : 140
+            return milestoneDetailsCollapsed ? 44 : 200
         }
         return UITableViewAutomaticDimension
     }
@@ -89,7 +87,11 @@ class PullRequestsViewController: UITableViewController {
             milestoneDetailsCollapsed = !milestoneDetailsCollapsed
             
             tableView.beginUpdates()
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! PRMilestoneCellContent
+            cell.updateIndicator()
+            
             tableView.endUpdates()
+            
         } else if (indexPath.row >= 1) {
             selectedPRIndex = indexPath.row - 1 //PRs start from second row
             performSegueWithIdentifier("toPullRequestDetails", sender: self)
@@ -102,8 +104,7 @@ class PullRequestsViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("prMilestoneCellContent",
                                                                    forIndexPath: indexPath) as! PRMilestoneCellContent
             
-            cell.accessoryType = .DisclosureIndicator
-            setMilestoneCellContent(cell)
+            cell.setupCell(milestone)
             return cell
         }
         if (indexPath.row == 1) {
