@@ -20,17 +20,22 @@ class FavoriteRepositoryViewController: UITableViewController, NSFetchedResultsC
         
         tableView.registerNib(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "repositoryCell")
         configureFetchedResultsController()
+        
+        self.tableView.allowsMultipleSelectionDuringEditing = false
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "favToMilestones") {
+            let target = segue.destinationViewController as! MilestonesViewController
+            target.repo = selectedRepo
+        }
     }
     
     // MARK: TableView
@@ -40,6 +45,17 @@ class FavoriteRepositoryViewController: UITableViewController, NSFetchedResultsC
             return 0
         }
         return sectionCount
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let repo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
+        CoreDataHelper.setFavorite(repo, value: 0)
+        
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
