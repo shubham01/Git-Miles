@@ -25,7 +25,6 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("Getting repositories")
         
         tableView.registerNib(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "repositoryCell")
         
@@ -192,7 +191,7 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 58
+        return 60
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
@@ -206,8 +205,6 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
             repo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
         }
         
-//        cell.titleLabel.text = repo.name
-//        cell.subtitleLabel.text = repo.ownerLogin
         cell.setupCell(repo)
         
         return cell

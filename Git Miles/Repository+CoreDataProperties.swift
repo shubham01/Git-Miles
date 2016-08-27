@@ -2,7 +2,7 @@
 //  Repository+CoreDataProperties.swift
 //  Git Miles
 //
-//  Created by Shubham Agrawal on 26/08/16.
+//  Created by Shubham Agrawal on 27/08/16.
 //  Copyright © 2016 Shubham Agrawal. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,6 +18,7 @@ extension Repository {
     @NSManaged var name: String?
     @NSManaged var ownerLogin: String?
     @NSManaged var url: String?
+    @NSManaged var isFavorite: NSNumber?
     @NSManaged var milestones: NSSet?
 
 }

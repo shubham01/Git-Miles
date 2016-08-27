@@ -16,6 +16,7 @@
     </entity>
     <entity name="Repository" representedClassName=".Repository" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ownerLogin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,6 +24,6 @@
     </entity>
     <elements>
         <element name="Milestone" positionX="-54" positionY="18" width="128" height="223"/>
-        <element name="Repository" positionX="250" positionY="62" width="128" height="118"/>
+        <element name="Repository" positionX="250" positionY="62" width="128" height="133"/>
     </elements>
 </model>

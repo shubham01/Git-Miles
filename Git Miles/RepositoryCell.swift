@@ -38,7 +38,14 @@ class RepositoryCell: UITableViewCell {
     }
     
     @IBAction func onClickFav(sender: UIButton) {
-        
+        print("fav clicked")
+        if (repo.isFavorite == nil || repo.isFavorite == 0) {
+            print("adding to fav")
+            CoreDataHelper.setFavorite(repo, value: 1)
+        } else {
+            print("removing from fav")
+            CoreDataHelper.setFavorite(repo, value: 0)
+        }
     }
     
     

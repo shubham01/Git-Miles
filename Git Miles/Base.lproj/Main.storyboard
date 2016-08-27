@@ -119,10 +119,10 @@
             </objects>
             <point key="canvasLocation" x="2589" y="253"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Favorites-->
         <scene sceneID="Xie-aZ-LIe">
             <objects>
-                <tableViewController id="Swb-wQ-NrD" sceneMemberID="viewController">
+                <tableViewController title="Favorites" id="Swb-wQ-NrD" customClass="FavoriteRepositoryViewController" customModule="Git_Miles" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Cx-gB-BvC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,9 +142,9 @@
                             <outlet property="delegate" destination="Swb-wQ-NrD" id="6S8-yQ-HgX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="pAT-Ry-ITu"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="pAT-Ry-ITu"/>
                     <connections>
-                        <segue destination="mfI-Bs-Sag" kind="show" id="tnM-lJ-Uks"/>
+                        <segue destination="mfI-Bs-Sag" kind="show" identifier="favToMilestones" id="tnM-lJ-Uks"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hub-9c-art" userLabel="First Responder" sceneMemberID="firstResponder"/>
