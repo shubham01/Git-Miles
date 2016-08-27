@@ -154,7 +154,7 @@
         <!--Milestones-->
         <scene sceneID="w3S-Hn-lYa">
             <objects>
-                <tableViewController title="Milestones" id="mfI-Bs-Sag" customClass="MilestonesViewController" customModule="Git_Miles" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Milestones" hidesBottomBarWhenPushed="YES" id="mfI-Bs-Sag" customClass="MilestonesViewController" customModule="Git_Miles" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ugK-Jg-pGi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
