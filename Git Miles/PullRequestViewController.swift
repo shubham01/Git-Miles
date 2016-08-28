@@ -95,7 +95,7 @@ extension PullRequestViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (indexPath.section == 0) {
-            return 34
+            return 25
         }
         if (indexPath.section == 1) {
             return 35

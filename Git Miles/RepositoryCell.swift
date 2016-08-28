@@ -48,7 +48,7 @@ class RepositoryCell: UITableViewCell {
         } else {
             //Remove from favorite
             CoreDataHelper.setFavorite(repo, value: 0)
-            let snackbar = TTGSnackbar.init(message: "Removed from favorites", duration: .Middle, actionText: "Undo") { (snackbar) in
+            let snackbar = TTGSnackbar.init(message: "Removed \(repo.name!) from favorites", duration: .Middle, actionText: "Undo") { (snackbar) in
                 CoreDataHelper.setFavorite(self.repo, value: 1)
             }
             

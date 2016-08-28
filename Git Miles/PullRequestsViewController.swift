@@ -50,7 +50,6 @@ class PullRequestsViewController: UITableViewController {
             
             self.activityIndicator.removeFromSuperview()
             self.tableView.reloadData()
-            print(self.pullRequests.count)
         }
     }
     
@@ -70,13 +69,12 @@ class PullRequestsViewController: UITableViewController {
     // MARK: TableView
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(pullRequests.count)
         return 2 + pullRequests.count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (indexPath.row == 0) {
-            return milestoneDetailsCollapsed ? 44 : 200
+            return milestoneDetailsCollapsed ? 44 : 150
         }
         return UITableViewAutomaticDimension
     }

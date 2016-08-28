@@ -207,28 +207,18 @@
 				514401041D6DAFF2006B8534 /* PullRequestViewController.swift */,
 				51CE784B1D72A5D00065A848 /* SettingsViewController.swift */,
 				514401031D6DAEF5006B8534 /* Resources */,
+				51CE784F1D72FBD10065A848 /* Prototype cells */,
 				514401081D6DCD84006B8534 /* Utility */,
 				51C86FCD1D69F065001563F6 /* Main.storyboard */,
 				5145FBA01D642D2400C5EBE5 /* Assets.xcassets */,
 				5145FBA21D642D2400C5EBE5 /* LaunchScreen.storyboard */,
 				5145FBA51D642D2400C5EBE5 /* Info.plist */,
-				514400F71D6CC261006B8534 /* PRMilestoneCellContent.swift */,
-				514400F81D6CC261006B8534 /* PRMilestoneCellContent.xib */,
-				514400FB1D6CCF05006B8534 /* PRMilestoneCellHeader.swift */,
-				514400FC1D6CCF05006B8534 /* PRMilestoneCellHeader.xib */,
-				514400FF1D6CF0E1006B8534 /* PullRequestCell.swift */,
-				512AA57C1D6EC75B00F103EC /* PullRequestCell.xib */,
 				512AA5761D6EC3AD00F103EC /* DataController.swift */,
 				512AA57E1D6EC77400F103EC /* Models.xcdatamodeld */,
 				512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */,
 				512AA5841D6EC7EB00F103EC /* Repository.swift */,
-				5135E2671D6F27E300E3C29C /* PRLabelCell.swift */,
 				516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */,
 				516AD2E21D7046C00043DE26 /* Milestone.swift */,
-				516AD2E91D7077F70043DE26 /* RepositoryCell.swift */,
-				516AD2EA1D7077F70043DE26 /* RepositoryCell.xib */,
-				511A3E691D72247400447B92 /* PRPullRequestHeaderCell.swift */,
-				511A3E6A1D72247400447B92 /* PRPullRequestHeaderCell.xib */,
 			);
 			path = "Git Miles";
 			sourceTree = "<group>";
@@ -249,6 +239,24 @@
 				5145FBBB1D642D2400C5EBE5 /* Info.plist */,
 			);
 			path = "Git MilesUITests";
+			sourceTree = "<group>";
+		};
+		51CE784F1D72FBD10065A848 /* Prototype cells */ = {
+			isa = PBXGroup;
+			children = (
+				514400F71D6CC261006B8534 /* PRMilestoneCellContent.swift */,
+				514400F81D6CC261006B8534 /* PRMilestoneCellContent.xib */,
+				514400FB1D6CCF05006B8534 /* PRMilestoneCellHeader.swift */,
+				514400FC1D6CCF05006B8534 /* PRMilestoneCellHeader.xib */,
+				514400FF1D6CF0E1006B8534 /* PullRequestCell.swift */,
+				512AA57C1D6EC75B00F103EC /* PullRequestCell.xib */,
+				5135E2671D6F27E300E3C29C /* PRLabelCell.swift */,
+				516AD2E91D7077F70043DE26 /* RepositoryCell.swift */,
+				516AD2EA1D7077F70043DE26 /* RepositoryCell.xib */,
+				511A3E691D72247400447B92 /* PRPullRequestHeaderCell.swift */,
+				511A3E6A1D72247400447B92 /* PRPullRequestHeaderCell.xib */,
+			);
+			name = "Prototype cells";
 			sourceTree = "<group>";
 		};
 		7AA43C6544466F53294C7823 /* Frameworks */ = {
