@@ -18,7 +18,7 @@ class PullRequestViewController: UIViewController {
     @IBOutlet weak var createdLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
+    @IBOutlet weak var pullRequestIcon: UIImageView!
     @IBOutlet weak var labelsTable: UITableView!
     
     var pullRequest: PullRequest!
@@ -41,6 +41,8 @@ class PullRequestViewController: UIViewController {
         labels = pullRequest.labels?.allObjects as! [Label]
         assignees = pullRequest.assignees?.allObjects as! [Assignee]
         
+        pullRequestIcon.image = ImageProvider.pullRequestImage
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,12 +51,19 @@ class PullRequestViewController: UIViewController {
     }
     
     func setPullRequestDetails() {
+        
         titleLabel.text = pullRequest.title!
         idLabel.text = "#\(pullRequest.number!)"
         
-        stateLabel.text = " \(pullRequest.state!) "
-        if stateLabel.text == " open " {
-            stateLabel.backgroundColor = UIColor(colorHex: 0x6cc644, alpha: 0.8)
+        stateLabel.text = "\(pullRequest.state!)"
+        if pullRequest.state == "open" {
+            let greenColor = UIColor(colorHex: 0x6cc644, alpha: 1.0)
+            pullRequestIcon.tintColor = greenColor
+            stateLabel.textColor = greenColor
+        } else {
+            let redColor = UIColor(colorHex: 0xbd2c00, alpha: 1.0)
+            pullRequestIcon.tintColor = redColor
+            stateLabel.textColor = redColor
         }
         
         //To make NSDate objects from ISO8601 timestamp

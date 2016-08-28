@@ -11,11 +11,11 @@ import UIKit
 import SwiftyJSON
 import CoreData
 
-class RepositoryViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate,
+class RepositoryViewController: UITableViewController, UISearchBarDelegate,
     NSFetchedResultsControllerDelegate {
     
     var filteredRepos: [Repository] = []
-    var shouldShowSearchResults = false
+//    var shouldShowSearchResults = false
     var selectedRepo: Repository!
     
     let activityIndicator = UIActivityIndicatorView()
@@ -127,22 +127,39 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     
     // MARK: SearchController
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        shouldShowSearchResults = true
-        tableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        shouldShowSearchResults = false
-        tableView.reloadData()
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if !shouldShowSearchResults {
-            shouldShowSearchResults = true
-            tableView.reloadData()
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchString = searchBar.text! as NSString
+        if searchString.length > 0 {
+            let predicate = NSPredicate(
+                format: "(name contains [cd] %@) || (ownerLogin contains [cd] %@)",
+                searchString, searchString)
+            fetchedResultsController.fetchRequest.predicate = predicate
+            
+        } else {
+            fetchedResultsController.fetchRequest.predicate = nil
         }
-        searchController.searchBar.resignFirstResponder()
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error)
+        }
+        tableView.reloadData()
+        
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        print("did end editing")
+        searchBar.resignFirstResponder()
+        fetchedResultsController.fetchRequest.predicate = nil
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error)
+        }
+        
+        tableView.reloadData()
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -162,7 +179,6 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     
     func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search repositories..."
         searchController.searchBar.delegate = self
@@ -181,9 +197,6 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if shouldShowSearchResults {
-            return filteredRepos.count
-        }
         guard let sectionData = fetchedResultsController.sections?[section] else {
             return 0
         }
@@ -199,11 +212,8 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
         
         let cell = tableView.dequeueReusableCellWithIdentifier("repositoryCell", forIndexPath: indexPath) as! RepositoryCell
         let repo: Repository!
-        if shouldShowSearchResults {
-            repo = filteredRepos[indexPath.row]
-        } else {
-            repo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
-        }
+        
+        repo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
         
         cell.setupCell(repo)
         
@@ -214,11 +224,8 @@ class RepositoryViewController: UITableViewController, UISearchResultsUpdating, 
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if shouldShowSearchResults {
-            selectedRepo = filteredRepos[indexPath.row]
-        } else {
-            selectedRepo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
-        }
+        
+        selectedRepo = fetchedResultsController.objectAtIndexPath(indexPath) as! Repository
         
         searchController.active = false
         

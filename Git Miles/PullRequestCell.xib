@@ -14,17 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="73.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3D-yp-0da">
-                        <rect key="frame" x="12" y="27" width="52" height="12"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caY-Bd-Ld4">
-                        <rect key="frame" x="292" y="8" width="20" height="20"/>
+                        <rect key="frame" x="12" y="8" width="17" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="FhJ-OS-ZqN"/>
-                            <constraint firstAttribute="width" constant="20" id="z1W-3f-uDO"/>
+                            <constraint firstAttribute="height" constant="17" id="CRf-Cj-OkK"/>
+                            <constraint firstAttribute="width" constant="17" id="j5p-cA-BzF"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OS9-hb-QYs">
@@ -35,22 +29,28 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull Request" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLj-Fb-B3x">
-                        <rect key="frame" x="12" y="8" width="80.5" height="17"/>
+                        <rect key="frame" x="37" y="8" width="80.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3D-yp-0da">
+                        <rect key="frame" x="37" y="27" width="52" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hLj-Fb-B3x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="0Ok-72-6UY"/>
                     <constraint firstItem="OS9-hb-QYs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="5pF-KA-Nbw"/>
-                    <constraint firstItem="x3D-yp-0da" firstAttribute="top" secondItem="hLj-Fb-B3x" secondAttribute="bottom" constant="2" id="7DL-Up-66C"/>
-                    <constraint firstItem="caY-Bd-Ld4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Ikx-ra-yyg"/>
+                    <constraint firstItem="caY-Bd-Ld4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="FC5-Lf-Nbu"/>
+                    <constraint firstItem="caY-Bd-Ld4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="LBf-1T-r3Q"/>
                     <constraint firstItem="OS9-hb-QYs" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="PzV-yd-eaN"/>
-                    <constraint firstItem="OS9-hb-QYs" firstAttribute="top" secondItem="x3D-yp-0da" secondAttribute="bottom" constant="8" id="Yvd-Ik-ULv"/>
-                    <constraint firstItem="caY-Bd-Ld4" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Z4b-YF-ULn"/>
-                    <constraint firstItem="x3D-yp-0da" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="vOd-W6-vye"/>
-                    <constraint firstItem="hLj-Fb-B3x" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="yB6-P5-MH1"/>
+                    <constraint firstItem="x3D-yp-0da" firstAttribute="leading" secondItem="hLj-Fb-B3x" secondAttribute="leading" id="VFc-Nu-ocb"/>
+                    <constraint firstItem="x3D-yp-0da" firstAttribute="top" secondItem="hLj-Fb-B3x" secondAttribute="bottom" constant="2" id="X3L-5j-p4z"/>
+                    <constraint firstItem="hLj-Fb-B3x" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="XDN-Bp-81p"/>
+                    <constraint firstItem="OS9-hb-QYs" firstAttribute="top" secondItem="x3D-yp-0da" secondAttribute="bottom" constant="8" id="YSf-iW-uuV"/>
+                    <constraint firstItem="hLj-Fb-B3x" firstAttribute="leading" secondItem="caY-Bd-Ld4" secondAttribute="trailing" constant="8" id="mP2-LI-HxH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
