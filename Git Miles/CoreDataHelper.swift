@@ -252,4 +252,29 @@ class CoreDataHelper {
         }
     }
     
+    static func deleteEntity(entityName: String) {
+        let moc = DataController.sharedInstance.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: entityName)
+        fetchRequest.includesPropertyValues = false
+        
+        do {
+            let objects = try moc.executeFetchRequest(fetchRequest)
+            if objects.count > 0 {
+                for object in objects {
+                    moc.deleteObject(object as! NSManagedObject)
+                }
+                try moc.save()
+            }
+        } catch {
+            fatalError("Couldn't delete entities: \(error)")
+        }
+        
+//        do {
+//            try moc.save()
+//        } catch {
+//            fatalError("Could not commit changes: \(error)")
+//        }
+        
+    }
+    
 }

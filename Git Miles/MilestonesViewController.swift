@@ -26,11 +26,6 @@ class MilestonesViewController: UITableViewController, NSFetchedResultsControlle
         
         configureFetchedResultsController()
         
-        activityIndicator.center = self.view.center
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        self.view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        
         let milestonesUrl = repo.url! + "/milestones"
         
         GitHubAPIManager.sharedInstance.getMilestones(milestonesUrl) {
@@ -49,6 +44,12 @@ class MilestonesViewController: UITableViewController, NSFetchedResultsControlle
         }
     }
     
+    func showActivityIndicator() {
+        activityIndicator.center = self.view.center
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "milestoneToPullRequests") {

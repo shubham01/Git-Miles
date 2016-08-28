@@ -32,10 +32,10 @@ class PullRequestCell: UITableViewCell {
         
         pullRequestIcon.image = ImageProvider.pullRequestImage
         if pr.state == "closed" {
-            pullRequestIcon.tintColor = UIColor.redColor()
+            pullRequestIcon.tintColor = UIColor(colorHex: 0xbd2c00, alpha: 1.0)
         }
         else {
-            pullRequestIcon.tintColor = UIColor.greenColor()
+            pullRequestIcon.tintColor = UIColor(colorHex: 0x6cc644, alpha: 1.0)
         }
     }
     

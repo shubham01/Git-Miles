@@ -54,7 +54,7 @@ class PullRequestViewController: UIViewController {
         
         stateLabel.text = " \(pullRequest.state!) "
         if stateLabel.text == " open " {
-            stateLabel.backgroundColor = UIColor(colorHex: 0x2ecc71, alpha: 0.8)
+            stateLabel.backgroundColor = UIColor(colorHex: 0x6cc644, alpha: 0.8)
         }
         
         //To make NSDate objects from ISO8601 timestamp

@@ -34,6 +34,7 @@ class GitHubAPIManager {
             .responseJSON { response in
                 completionHandler(response: response)
             }
+        DataHelper.basicAuth = credBase64
     }
     
     func getRepositories(completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
@@ -57,7 +58,7 @@ class GitHubAPIManager {
         }
     }
     
-    func getPullRequestsForMilestone(repoUrl: String, number: NSNumber, state: String, complethionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+    func getPullRequestsForMilestone(repoUrl: String, number: NSNumber, state: String, completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         
         let headers = ["Authorization": "token \(DataHelper.oAuthToken!)"]
         let url = repoUrl + "/issues"
@@ -70,10 +71,19 @@ class GitHubAPIManager {
         
         Alamofire.request(.GET, url, parameters: parameters, headers: headers)
             .responseJSON { response in
-                complethionHandler(response: response)
+                completionHandler(response: response)
                 
         }
         
+    }
+    
+    func logout(completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+        let headers = ["Authorization": "Basic \(DataHelper.basicAuth!)"]
+        let oAuthId = DataHelper.oAuthTokenID!
+        Alamofire.request(.DELETE, API_URL + "authorizations/\(oAuthId)", headers: headers)
+            .responseJSON() { response in
+                completionHandler(response: response)
+        }
     }
     
     

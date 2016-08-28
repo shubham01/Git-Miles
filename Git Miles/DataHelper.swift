@@ -15,6 +15,7 @@ class DataHelper {
     static let KEY_TOKEN = "OAuthToken"
     static let KEY_TOKEN_ID = "OAuthTokenID"
     static let KEY_USERNAME = "UserName"
+    static let KEY_BASIC_AUTH = "BasicAuth"
     
     static var oAuthToken: String? {
         set {
@@ -37,11 +38,16 @@ class DataHelper {
         get { return keychain[KEY_USERNAME] }
     }
     
+    static var basicAuth: String? {
+        set {
+            keychain[KEY_BASIC_AUTH] = newValue
+        }
+        get {
+            return keychain[KEY_BASIC_AUTH]
+        }
+    }
+    
     static func hasOAuthToken() -> Bool {
-//        return false
-//        oAuthToken = nil
-//        oAuthTokenID = nil
-//        username = nil
         print("has token: \(oAuthToken)")
         return oAuthToken != nil
     }
@@ -51,6 +57,13 @@ class DataHelper {
         print(oAuthToken!)
         oAuthTokenID = id
         username = forUsername
+    }
+    
+    static func deleteValues() {
+        oAuthToken = nil
+        oAuthTokenID = nil
+        username = nil
+        basicAuth = nil
     }
     
 }

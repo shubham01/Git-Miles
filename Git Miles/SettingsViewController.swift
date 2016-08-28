@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TTGSnackbar
 
 class SettingsViewController: UITableViewController {
     
@@ -59,13 +60,7 @@ class SettingsViewController: UITableViewController {
         let alert = UIAlertController(title: "Logout", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .Default , handler: { (action: UIAlertAction!) in
-//            DataHelper.oAuthToken = nil
-//            DataHelper.oAuthTokenID = nil
-//            DataHelper.username = nil
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("loginViewController") as! ViewController
-            UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-            
+            self.logout()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
@@ -76,8 +71,40 @@ class SettingsViewController: UITableViewController {
         
     }
     
-
-    // MARK: - Table view
+    func logout() {
+        let snackbar = TTGSnackbar.init(message: "Logging out", duration: .Forever)
+        snackbar.show()
+        
+        CoreDataHelper.deleteEntity("Repository")
+        CoreDataHelper.deleteEntity("Milestone")
+        CoreDataHelper.deleteEntity("Label")
+        CoreDataHelper.deleteEntity("Assignee")
+        CoreDataHelper.deleteEntity("PullRequest")
+        
+        DataHelper.deleteValues()
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("loginViewController") as! ViewController
+        UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+        
+//        GitHubAPIManager.sharedInstance.logout() {
+//            response in
+//            snackbar.dismiss()
+//            
+//            let status = response.response?.statusCode
+//            print(response)
+//            if status >= 200 && status < 300 {
+//                
+//            } else {
+//                let errorSnackBar = TTGSnackbar.init(message: "Oops! Please log out again", duration: .Long, actionText: "Retry") {
+//                    snackbar in
+//                    snackbar.dismiss()
+//                    self.logout()
+//                }
+//                errorSnackBar.show()
+//            }
+//        }
+    }
 
     
 

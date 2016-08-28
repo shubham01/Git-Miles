@@ -54,9 +54,7 @@ class ViewController: UIViewController {
             activityIndicator.hidden = true
             let statusCode = response.response?.statusCode
             if (statusCode>=200 && statusCode<300) { //logged in
-                debugPrint("Logged in")
                 let json = JSON(response.result.value!)
-                debugPrint(json)
                 
                 let token = json["token"].stringValue
                 let id = json["id"].stringValue
@@ -81,11 +79,15 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func onClickForgot(sender: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/password_reset")!)
+    }
+    
     func showDismissableSnackbar(message: String, duration: TTGSnackbarDuration) {
         let snackbar = TTGSnackbar.init(message: message, duration: duration, actionText: "Dismiss") { snackbar in
             snackbar.dismiss()
         }
-        snackbar.actionTextColor = UIColor.redColor()
+        snackbar.actionTextColor = UIColor.orangeColor()
         snackbar.show()
     }
 }
