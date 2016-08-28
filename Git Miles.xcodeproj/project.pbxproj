@@ -166,8 +166,8 @@
 		514401031D6DAEF5006B8534 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				513C1C281D66F2C100D2DDE4 /* RepositoryOld.swift */,
 				51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */,
+				513C1C281D66F2C100D2DDE4 /* RepositoryOld.swift */,
 				51CD19F41D6C2B7F006E8616 /* PullRequestOld.swift */,
 			);
 			name = Resources;

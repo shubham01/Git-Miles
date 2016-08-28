@@ -16,11 +16,10 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
     // MARK: Member variables
     var milestone: Milestone!
     var repo: Repository!
-    var pullRequests: [PullRequest] = []
     
     var activityIndicator = UIActivityIndicatorView()
     
-    var selectedPRIndex: Int!
+    var selectedPR: PullRequest!
     var milestoneDetailsCollapsed: Bool = true
     
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -71,7 +70,7 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toPullRequestDetails") {
             let target = segue.destinationViewController as! PullRequestViewController
-            target.pullRequest = pullRequests[selectedPRIndex]
+            target.pullRequest = selectedPR
         }
     }
     
@@ -105,7 +104,9 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
             tableView.endUpdates()
             
         } else if (indexPath.row > 1) {
-            selectedPRIndex = indexPath.row - 2 //PRs start from third row
+            //PRs start from third row
+            let index = NSIndexPath(forRow: indexPath.row - 2, inSection: indexPath.section)
+            selectedPR = fetchedResultsController.objectAtIndexPath(index) as! PullRequest
             performSegueWithIdentifier("toPullRequestDetails", sender: self)
         }
     }
@@ -131,8 +132,6 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
             
             let pr = fetchedResultsController.objectAtIndexPath(adjustedIndex) as! PullRequest
             cell.setupCell(pr)
-//            cell.titleLabel.text = pr.title
-//            cell.usernameLabel.text = pr.userLogin
             return cell
         }
         return UITableViewCell()

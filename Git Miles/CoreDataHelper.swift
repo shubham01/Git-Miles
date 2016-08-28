@@ -160,18 +160,24 @@ class CoreDataHelper {
             
                     pullRequest.setValue(issue["milestone"]["id"].intValue, forKey: "milestoneId")
                     
+                    let mutableLabels = pullRequest.mutableSetValueForKey("labels")
+                    let mutableAssignees = pullRequest.mutableSetValueForKey("assignees")
+                    
+                    mutableLabels.removeAllObjects()
+                    mutableAssignees.removeAllObjects()
+                    
                     for (_,label) in issue["labels"] {
                         let newLabel = Label(entity: labelEntityDescription!, insertIntoManagedObjectContext: moc)
                         newLabel.name = label["name"].stringValue
                         newLabel.color = label["color"].stringValue
-                        pullRequest.mutableSetValueForKey("labels").addObject(newLabel)
+                        mutableLabels.addObject(newLabel)
                     }
                     
                     for (_,assignee) in issue["assignees"] {
                         let newAssignee = Assignee(entity: assigneeEntityDescription!, insertIntoManagedObjectContext: moc)
                         newAssignee.login = assignee["login"].stringValue
                         newAssignee.avatar = assignee["avatar_url"].stringValue
-                        pullRequest.mutableSetValueForKey("assignees").addObject(newAssignee)
+                        mutableAssignees.addObject(newAssignee)
                     }
                     
 //                    milestone.mutableSetValueForKey("pullRequests").addObject(pullRequest)
