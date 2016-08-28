@@ -15,6 +15,8 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var showOpenPRSwitch: UISwitch!
     @IBOutlet weak var loggedInAsLabel: UILabel!
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,11 +27,16 @@ class SettingsViewController: UITableViewController {
         
         showOpenPRSwitch.tag = 2
         showOpenPRSwitch.addTarget(self, action: #selector(SettingsViewController.showAvatarsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        setupViews()
+    }
+    
+    func setupViews() {
+        showAvtarsSwitch.on = defaults.boolForKey("showAvatars")
+        showOpenPRSwitch.on = defaults.boolForKey("showOpenPRs")
     }
     
     func showAvatarsChanged(switchView: UISwitch) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
         switch switchView.tag {
         case showAvtarsSwitch.tag:
             defaults.setBool(showAvtarsSwitch.on, forKey: "showAvatars")

@@ -29,13 +29,11 @@ class PullRequestViewController: UIViewController {
     let sections: [String] = ["Labels", "Assignees"]
     
     var showAvatars: Bool!
-    var showOpenPRs: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showAvatars = defaults.boolForKey("showAvatars")
-        showOpenPRs = defaults.boolForKey("showOpenPRs")
         
         setPullRequestDetails()
     }

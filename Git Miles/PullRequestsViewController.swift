@@ -22,6 +22,9 @@ class PullRequestsViewController: UITableViewController {
     var selectedPRIndex: Int!
     var milestoneDetailsCollapsed: Bool = true
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var prStateToShow: String!
+    
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +37,14 @@ class PullRequestsViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: "PRMilestoneCellContent", bundle: nil), forCellReuseIdentifier: "prMilestoneCellContent")
         tableView.registerNib(UINib(nibName: "PullRequestCell", bundle: nil), forCellReuseIdentifier: "pullRequestCell")
         tableView.registerNib(UINib(nibName: "PRPullRequestHeaderCell", bundle: nil), forCellReuseIdentifier: "prPRHeaderCell")
-
         
-        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number!, state: "all") {
+        if defaults.boolForKey("showOpenPRs") {
+            prStateToShow = "open"
+        } else {
+            prStateToShow = "all"
+        }
+        
+        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number!, state: prStateToShow) {
             response in
             
             self.activityIndicator.hidden = true

@@ -209,16 +209,13 @@
 				514401031D6DAEF5006B8534 /* Resources */,
 				51CE784F1D72FBD10065A848 /* Prototype cells */,
 				514401081D6DCD84006B8534 /* Utility */,
+				51CE78501D7315850065A848 /* Entities */,
 				51C86FCD1D69F065001563F6 /* Main.storyboard */,
 				5145FBA01D642D2400C5EBE5 /* Assets.xcassets */,
 				5145FBA21D642D2400C5EBE5 /* LaunchScreen.storyboard */,
 				5145FBA51D642D2400C5EBE5 /* Info.plist */,
 				512AA5761D6EC3AD00F103EC /* DataController.swift */,
 				512AA57E1D6EC77400F103EC /* Models.xcdatamodeld */,
-				512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */,
-				512AA5841D6EC7EB00F103EC /* Repository.swift */,
-				516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */,
-				516AD2E21D7046C00043DE26 /* Milestone.swift */,
 			);
 			path = "Git Miles";
 			sourceTree = "<group>";
@@ -257,6 +254,17 @@
 				511A3E6A1D72247400447B92 /* PRPullRequestHeaderCell.xib */,
 			);
 			name = "Prototype cells";
+			sourceTree = "<group>";
+		};
+		51CE78501D7315850065A848 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */,
+				512AA5841D6EC7EB00F103EC /* Repository.swift */,
+				516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */,
+				516AD2E21D7046C00043DE26 /* Milestone.swift */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		7AA43C6544466F53294C7823 /* Frameworks */ = {

@@ -87,17 +87,17 @@ class CoreDataHelper {
                     
                     let existingMilestone = fetchedResults[0]
                     
-                    existingMilestone.id = milestone["id"].intValue
-                    existingMilestone.number = milestone["number"].intValue
-                    existingMilestone.title = milestone["title"].stringValue
-                    existingMilestone.descriptionBody = milestone["description"].stringValue
-                    existingMilestone.state = milestone["state"].stringValue
-                    existingMilestone.createdAt = milestone["created_at"].stringValue
-                    existingMilestone.updatedAt = milestone["updated_at"].stringValue
-                    existingMilestone.closedAt = milestone["closed_at"].stringValue
-                    existingMilestone.dueOn = milestone["due_on"].stringValue
-                    existingMilestone.openIssues = milestone["open_issues"].intValue
-                    existingMilestone.closedIssues = milestone["closed_issues"].intValue
+                    existingMilestone.setValue(milestone["id"].intValue, forKey: "id")
+                    existingMilestone.setValue(milestone["number"].intValue, forKey: "number")
+                    existingMilestone.setValue(milestone["title"].stringValue, forKey: "title")
+                    existingMilestone.setValue(milestone["description"].stringValue, forKey: "descriptionBody")
+                    existingMilestone.setValue(milestone["state"].stringValue, forKey: "state")
+                    existingMilestone.setValue(milestone["created_at"].stringValue, forKey: "createdAt")
+                    existingMilestone.setValue(milestone["updated_at"].stringValue, forKey: "updatedAt")
+                    existingMilestone.setValue(milestone["closed_at"].stringValue, forKey: "closedAt")
+                    existingMilestone.setValue(milestone["due_on"].stringValue, forKey: "dueOn")
+                    existingMilestone.setValue(milestone["open_issues"].intValue, forKey: "openIssues")
+                    existingMilestone.setValue(milestone["closed_issues"].intValue, forKey: "closedIssues")
                     
                 } else {
                     let newMilestone = Milestone(entity: entityDescription!,
