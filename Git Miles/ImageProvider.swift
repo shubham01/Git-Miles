@@ -13,6 +13,7 @@ class ImageProvider {
     
     static let favoriteImage = UIImage(named: "star_selected")!
     static let notFavoriteImage = UIImage(named: "star_unselected")!
+    static let userPlaceHolderImage = UIImage(named: "avatar_placeholder")
     
     static func getFavoriteImage(isFavorite: NSNumber?) -> UIImage {
         if isFavorite == nil || isFavorite == 0 {

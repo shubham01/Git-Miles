@@ -33,6 +33,7 @@ class PullRequestsViewController: UITableViewController {
         
         tableView.registerNib(UINib(nibName: "PRMilestoneCellContent", bundle: nil), forCellReuseIdentifier: "prMilestoneCellContent")
         tableView.registerNib(UINib(nibName: "PullRequestCell", bundle: nil), forCellReuseIdentifier: "pullRequestCell")
+        tableView.registerNib(UINib(nibName: "PRPullRequestHeaderCell", bundle: nil), forCellReuseIdentifier: "prPRHeaderCell")
 
         
         GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number!) {
@@ -69,11 +70,11 @@ class PullRequestsViewController: UITableViewController {
     // MARK: TableView
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 + pullRequests.count
+        print(pullRequests.count)
+        return 2 + pullRequests.count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
         if (indexPath.row == 0) {
             return milestoneDetailsCollapsed ? 44 : 200
         }
@@ -92,8 +93,8 @@ class PullRequestsViewController: UITableViewController {
             
             tableView.endUpdates()
             
-        } else if (indexPath.row >= 1) {
-            selectedPRIndex = indexPath.row - 1 //PRs start from second row
+        } else if (indexPath.row > 1) {
+            selectedPRIndex = indexPath.row - 2 //PRs start from third row
             performSegueWithIdentifier("toPullRequestDetails", sender: self)
         }
     }
@@ -108,8 +109,13 @@ class PullRequestsViewController: UITableViewController {
             return cell
         }
         if (indexPath.row == 1) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("prPRHeaderCell", forIndexPath: indexPath) as! PRPullRequestHeaderCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            return cell
+        }
+        if (indexPath.row > 1) {
             let cell = tableView.dequeueReusableCellWithIdentifier("pullRequestCell", forIndexPath: indexPath) as! PullRequestCell
-            let pr = pullRequests[indexPath.row - 1]
+            let pr = pullRequests[indexPath.row - 2]
             cell.titleLabel.text = pr.title
             cell.usernameLabel.text = pr.userLogin
             return cell

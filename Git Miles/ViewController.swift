@@ -28,15 +28,6 @@ class ViewController: UIViewController {
         otpField.hidden = true
     }
     
-    override func viewDidAppear(animated: Bool) {
-        if(apiManager.hasOAuthToken()) {
-            debugPrint("Logged in")
-            self.performSegueWithIdentifier("loginToRepo", sender: self)
-        } else {
-            debugPrint("Require log in")
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,11 +57,16 @@ class ViewController: UIViewController {
                 let json = JSON(response.result.value!)
                 debugPrint(json)
                 
-                self.apiManager.storeOAuthToken(json["token"].string!)
+                let token = json["token"].stringValue
+                let id = json["id"].stringValue
+                let username = self.usernameField.text
+                
+                DataHelper.storeOAuthToken(token, id: id, forUsername: username!)
+                
                 self.performSegueWithIdentifier("loginToRepo", sender: self)
                 
             } else if (statusCode == 401) {
-                if let header = response.response?.allHeaderFields["X-GitHub-OTP"]! {
+                if let header = response.response?.allHeaderFields["X-GitHub-OTP"] {
                     if (header.string == nil) {
                         self.otpField.hidden = false
                     }

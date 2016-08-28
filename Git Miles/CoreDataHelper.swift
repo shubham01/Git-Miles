@@ -140,12 +140,10 @@ class CoreDataHelper {
         let moc = DataController.sharedInstance.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Repository")
         fetchRequest.predicate = NSPredicate(format: "id == %@", repo.id!)
-        print("setfav")
         do {
             let results = try moc.executeFetchRequest(fetchRequest) as! [Repository]
             print(results.count)
             if (results.count > 0) {
-                print("updating")
                 results[0].setValue(value, forKey: "isFavorite")
             }
         } catch {

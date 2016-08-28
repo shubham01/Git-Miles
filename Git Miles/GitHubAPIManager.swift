@@ -17,24 +17,6 @@ class GitHubAPIManager {
     let API_URL = "https://api.github.com/"
     let CLIENT_ID = "8c253e8f25e9cdb33ee2"
     let CLIENT_SECRET = "23e343ae2c255f87ce680cc0a561063d3cf973e7"
-    let keychain = Keychain(service: NSBundle.mainBundle().bundleIdentifier!)
-    
-    let KEY_TOKEN = "OAuthToken"
-    
-    
-    var OAuthToken: String?
-
-    func hasOAuthToken() -> Bool {
-//        keychain[KEY_TOKEN] = nil
-        if let token = try? keychain.getString(KEY_TOKEN) {
-            return token != nil
-        }
-        return false
-    }
-    
-    func storeOAuthToken(token: String) {
-        keychain[KEY_TOKEN] = token
-    }
     
     func authorize(username: String, password: String, otp: String, completionHandler: (response: Response<AnyObject,NSError>) -> ()) {
         let credentials = "\(username):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
@@ -56,7 +38,7 @@ class GitHubAPIManager {
     
     func getRepositories(completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
+        let headers = ["Authorization": "token \(DataHelper.oAuthToken!)"]
         Alamofire.request(.GET, API_URL + "user/repos", headers: headers)
             .responseJSON { response in
                 
@@ -67,7 +49,7 @@ class GitHubAPIManager {
     
     func getMilestones(url: String, completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
+        let headers = ["Authorization": "token \(DataHelper.oAuthToken!)"]
         Alamofire.request(.GET, url, headers: headers)
             .responseJSON { response in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -77,7 +59,7 @@ class GitHubAPIManager {
     
     func getPullRequestsForMilestone(repoUrl: String, number: NSNumber, complethionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         
-        let headers = ["Authorization": "token \(keychain[KEY_TOKEN]!)"]
+        let headers = ["Authorization": "token \(DataHelper.oAuthToken!)"]
         let url = repoUrl + "/issues"
         print(url)
         

@@ -23,10 +23,18 @@ class PullRequestViewController: UIViewController {
     @IBOutlet weak var assigneesTable: UITableView!
     
     var pullRequest: PullRequest!
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    var showAvatars: Bool!
+    var showOpenPRs: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        showAvatars = defaults.boolForKey("showAvatars")
+        showOpenPRs = defaults.boolForKey("showOpenPRs")
+        
         setPullRequestDetails()
     }
 
@@ -88,12 +96,14 @@ extension PullRequestViewController: UITableViewDataSource, UITableViewDelegate 
                 indexPath)
             cell.textLabel?.text = pullRequest.assignees[indexPath.row].login
             
-            let url = NSURL(string: (pullRequest.assignees[indexPath.row].avatar))
-            print(url)
-            
-            let placeHolderImage = UIImage(named: "avatar_placeholder")
-            
-            cell.imageView?.af_setImageWithURL(url!, placeholderImage: placeHolderImage)
+            if let show = showAvatars where show {
+                let url = NSURL(string: (pullRequest.assignees[indexPath.row].avatar))
+                print(url)
+                
+                cell.imageView?.af_setImageWithURL(url!, placeholderImage: ImageProvider.userPlaceHolderImage)
+            } else {
+                cell.imageView?.image = ImageProvider.userPlaceHolderImage
+            }
             
             return cell
         }

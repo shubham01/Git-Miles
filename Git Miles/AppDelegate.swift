@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        if (GitHubAPIManager.sharedInstance.hasOAuthToken()) {
+        print(DataHelper.oAuthToken)
+        if (DataHelper.hasOAuthToken()) {
             self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("mainTabController")
         } else {
             self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("loginViewController")
