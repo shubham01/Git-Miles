@@ -19,39 +19,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="github_banner" translatesAutoresizingMaskIntoConstraints="NO" id="Yci-Lw-41e">
-                                <rect key="frame" x="100" y="145" width="400" height="150"/>
+                                <rect key="frame" x="100" y="80" width="400" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yci-Lw-41e" secondAttribute="height" multiplier="8:3" id="1Zq-9b-gYX"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYs-as-iX5">
-                                <rect key="frame" x="60" y="325" width="480" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tCT-Wp-hvX">
-                                <rect key="frame" x="60" y="363" width="480" height="30"/>
+                                <rect key="frame" x="60" y="278" width="480" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YwQ-rC-Ajo">
-                                <rect key="frame" x="60" y="401" width="480" height="30"/>
+                                <rect key="frame" x="60" y="316" width="480" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzq-gv-UMD">
-                                <rect key="frame" x="498" y="439" width="42" height="30"/>
+                                <rect key="frame" x="498" y="354" width="42" height="30"/>
                                 <state key="normal" title="Log in"/>
                                 <connections>
                                     <action selector="onClickLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pub-DO-Yms"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYs-as-iX5">
+                                <rect key="frame" x="60" y="240" width="480" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YwQ-rC-Ajo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="0fg-bV-s5Q"/>
-                            <constraint firstItem="Yci-Lw-41e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="125" id="2xL-lA-qBe"/>
+                            <constraint firstItem="Yci-Lw-41e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="2xL-lA-qBe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uzq-gv-UMD" secondAttribute="trailing" constant="40" id="BL4-ej-2Bt"/>
                             <constraint firstItem="Yci-Lw-41e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="80" id="JqT-Dw-BIX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yci-Lw-41e" secondAttribute="trailing" constant="80" id="M91-mY-DaT"/>
@@ -63,7 +63,7 @@
                             <constraint firstItem="tCT-Wp-hvX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="ptV-g3-QsE"/>
                             <constraint firstItem="YwQ-rC-Ajo" firstAttribute="top" secondItem="tCT-Wp-hvX" secondAttribute="bottom" constant="8" id="suc-QT-gER"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZYs-as-iX5" secondAttribute="trailing" constant="40" id="t4D-c8-GSF"/>
-                            <constraint firstItem="ZYs-as-iX5" firstAttribute="top" secondItem="Yci-Lw-41e" secondAttribute="bottom" constant="30" id="umv-az-bor"/>
+                            <constraint firstItem="ZYs-as-iX5" firstAttribute="top" secondItem="Yci-Lw-41e" secondAttribute="bottom" constant="10" id="umv-az-bor"/>
                         </constraints>
                     </view>
                     <connections>

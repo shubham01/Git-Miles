@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import KeychainAccess
 import SwiftyJSON
+import TTGSnackbar
 
 class ViewController: UIViewController {
     
@@ -69,13 +70,23 @@ class ViewController: UIViewController {
                 if let header = response.response?.allHeaderFields["X-GitHub-OTP"] {
                     if (header.string == nil) {
                         self.otpField.hidden = false
+                        self.showDismissableSnackbar("Enter OTP", duration: .Middle)
                     }
+                } else {
+                    //invalid credentials
+                    self.showDismissableSnackbar("Username or password is incorrect",
+                                            duration: .Middle)
                 }
-                //invalid credentials
             }
-            
-            
         }
+    }
+    
+    func showDismissableSnackbar(message: String, duration: TTGSnackbarDuration) {
+        let snackbar = TTGSnackbar.init(message: message, duration: duration, actionText: "Dismiss") { snackbar in
+            snackbar.dismiss()
+        }
+        snackbar.actionTextColor = UIColor.redColor()
+        snackbar.show()
     }
 }
 
