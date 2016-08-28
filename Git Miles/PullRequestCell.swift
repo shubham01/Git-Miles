@@ -13,6 +13,7 @@ class PullRequestCell: UITableViewCell {
     // MARK: Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var pullRequestIcon: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +25,20 @@ class PullRequestCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setupCell(pr: PullRequest) {
+        titleLabel.text = pr.title
+        usernameLabel.text = pr.userLogin
+        
+        pullRequestIcon.image = ImageProvider.pullRequestImage
+        if pr.state == "closed" {
+            pullRequestIcon.tintColor = UIColor.redColor()
+        }
+        else {
+            pullRequestIcon.tintColor = UIColor.greenColor()
+        }
+    }
+    
+    
     
 }

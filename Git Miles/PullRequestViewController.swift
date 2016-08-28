@@ -20,11 +20,13 @@ class PullRequestViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var labelsTable: UITableView!
-    @IBOutlet weak var assigneesTable: UITableView!
     
     var pullRequest: PullRequest!
     
+    
     let defaults = NSUserDefaults.standardUserDefaults()
+    
+    let sections: [String] = ["Labels", "Assignees"]
     
     var showAvatars: Bool!
     var showOpenPRs: Bool!
@@ -75,23 +77,50 @@ class PullRequestViewController: UIViewController {
 }
 
 
-//For table view
 extension PullRequestViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == labelsTable {
-            return pullRequest.labels.count
-        }
-        return pullRequest.assignees.count
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sections.count
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 27
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (indexPath.section == 0) {
+            return 34
+        }
+        if (indexPath.section == 1) {
+            return 35
+        }
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == 0) {
+            return pullRequest.labels.count
+        } else if (section == 1) {
+            return pullRequest.assignees.count
+        }
+        return 0
+    }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if(tableView == labelsTable) {
+        if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("prLabelCell", forIndexPath:
                 indexPath) as! PRLabelCell
             cell.setupCell(pullRequest.labels[indexPath.row])
             return cell
-        } else {
+        }
+        else {
             let cell = tableView.dequeueReusableCellWithIdentifier("prAssigneeCell", forIndexPath:
                 indexPath)
             cell.textLabel?.text = pullRequest.assignees[indexPath.row].login

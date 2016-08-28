@@ -36,7 +36,7 @@ class PullRequestsViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: "PRPullRequestHeaderCell", bundle: nil), forCellReuseIdentifier: "prPRHeaderCell")
 
         
-        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number!) {
+        GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number!, state: "all") {
             response in
             
             self.activityIndicator.hidden = true
@@ -116,8 +116,9 @@ class PullRequestsViewController: UITableViewController {
         if (indexPath.row > 1) {
             let cell = tableView.dequeueReusableCellWithIdentifier("pullRequestCell", forIndexPath: indexPath) as! PullRequestCell
             let pr = pullRequests[indexPath.row - 2]
-            cell.titleLabel.text = pr.title
-            cell.usernameLabel.text = pr.userLogin
+            cell.setupCell(pr)
+//            cell.titleLabel.text = pr.title
+//            cell.usernameLabel.text = pr.userLogin
             return cell
         }
         return UITableViewCell()

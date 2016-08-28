@@ -57,14 +57,15 @@ class GitHubAPIManager {
         }
     }
     
-    func getPullRequestsForMilestone(repoUrl: String, number: NSNumber, complethionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+    func getPullRequestsForMilestone(repoUrl: String, number: NSNumber, state: String, complethionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         
         let headers = ["Authorization": "token \(DataHelper.oAuthToken!)"]
         let url = repoUrl + "/issues"
         print(url)
         
         let parameters: [String : AnyObject] = [
-            "milestone": number
+            "milestone": number,
+            "state": state,
         ]
         
         Alamofire.request(.GET, url, parameters: parameters, headers: headers)
