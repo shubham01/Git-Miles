@@ -58,19 +58,6 @@ class CoreDataHelper {
         }
     }
     
-    static func fetchRepos() -> [Repository]{
-        let moc = DataController.sharedInstance.managedObjectContext
-        let repoFetch = NSFetchRequest(entityName: "Repository")
-        var repos: [Repository]!
-        do {
-            repos = try moc.executeFetchRequest(repoFetch) as! [Repository]
-            
-        } catch {
-            fatalError("Failed to fetch repo \(error)")
-        }
-        return repos
-    }
-    
     static func storeMilestones(milestones: JSON, repo: Repository) {
         let moc = DataController.sharedInstance.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Milestone")
@@ -99,6 +86,7 @@ class CoreDataHelper {
                     existingMilestone.setValue(milestone["open_issues"].intValue, forKey: "openIssues")
                     existingMilestone.setValue(milestone["closed_issues"].intValue, forKey: "closedIssues")
                     
+                    
                 } else {
                     let newMilestone = Milestone(entity: entityDescription!,
                                              insertIntoManagedObjectContext: moc)
@@ -116,6 +104,108 @@ class CoreDataHelper {
                     newMilestone.closedIssues = milestone["closed_issues"].intValue
                     
                     repo.mutableSetValueForKey("milestones").addObject(newMilestone)
+                    
+                }
+                
+                do {
+                    try moc.save()
+                } catch {
+                    fatalError("Could not save context: \(error)")
+                }
+            } catch {
+                fatalError("Could not fetch repository: \(error)")
+            }
+        }
+        
+        do {
+            try moc.save()
+        } catch {
+            fatalError("Could not save context: \(error)")
+        }
+    }
+    
+    static func storePullRequest(pullRequests: JSON, milestone: Milestone) {
+        let moc = DataController.sharedInstance.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "PullRequest")
+        let entityDescription = NSEntityDescription.entityForName("PullRequest", inManagedObjectContext: moc)
+        let labelEntityDescription = NSEntityDescription.entityForName("Label",
+                                                    inManagedObjectContext: moc)
+        let assigneeEntityDescription = NSEntityDescription.entityForName("Assignee",
+                                                    inManagedObjectContext: moc)
+        
+        for (_, issue) in pullRequests {
+            
+            if !PullRequest.isPullRequest(issue) {
+                continue
+            }
+            
+            let predicate = NSPredicate(format: "id == %i", issue["id"].intValue)
+            fetchRequest.predicate = predicate
+            
+            do {
+                let fetchedResults = try moc.executeFetchRequest(fetchRequest) as! [PullRequest]
+                
+                if fetchedResults.count > 0 {
+                    
+                    let pullRequest = fetchedResults[0]
+                    
+                    pullRequest.setValue(issue["id"].intValue, forKey: "id")
+                    pullRequest.setValue(issue["number"].intValue, forKey: "number")
+                    pullRequest.setValue(issue["title"].stringValue, forKey: "title")
+                    pullRequest.setValue(issue["body"].stringValue, forKey: "body")
+                    pullRequest.setValue(issue["state"].stringValue, forKey: "state")
+                    pullRequest.setValue(issue["created_at"].stringValue, forKey: "createdAt")
+                    pullRequest.setValue(issue["updated_at"].stringValue, forKey: "updatedAt")
+                    pullRequest.setValue(issue["user"]["login"].stringValue, forKey: "userLogin")
+            
+                    pullRequest.setValue(issue["milestone"]["id"].intValue, forKey: "milestoneId")
+                    
+                    for (_,label) in issue["labels"] {
+                        let newLabel = Label(entity: labelEntityDescription!, insertIntoManagedObjectContext: moc)
+                        newLabel.name = label["name"].stringValue
+                        newLabel.color = label["color"].stringValue
+                        pullRequest.mutableSetValueForKey("labels").addObject(newLabel)
+                    }
+                    
+                    for (_,assignee) in issue["assignees"] {
+                        let newAssignee = Assignee(entity: assigneeEntityDescription!, insertIntoManagedObjectContext: moc)
+                        newAssignee.login = assignee["login"].stringValue
+                        newAssignee.avatar = assignee["avatar_url"].stringValue
+                        pullRequest.mutableSetValueForKey("assignees").addObject(newAssignee)
+                    }
+                    
+//                    milestone.mutableSetValueForKey("pullRequests").addObject(pullRequest)
+                    
+                    
+                } else {
+                    let newPR = PullRequest(entity: entityDescription!,
+                                                    insertIntoManagedObjectContext: moc)
+                    
+                    newPR.id = issue["id"].intValue
+                    newPR.number = issue["number"].intValue
+                    newPR.title = issue["title"].stringValue
+                    newPR.body = issue["body"].stringValue
+                    newPR.state = issue["state"].stringValue
+                    newPR.createdAt = issue["created_at"].stringValue
+                    newPR.updatedAt = issue["updated_at"].stringValue
+                    newPR.userLogin = issue["user"]["login"].stringValue
+                    newPR.milestoneId = issue["milestone"]["id"].intValue
+                    
+                    for (_,label) in issue["labels"] {
+                        let newLabel = Label(entity: labelEntityDescription!, insertIntoManagedObjectContext: moc)
+                        newLabel.name = label["name"].stringValue
+                        newLabel.color = label["color"].stringValue
+                        newPR.mutableSetValueForKey("labels").addObject(newLabel)
+                    }
+                    
+                    for (_,assignee) in issue["assignees"] {
+                        let newAssignee = Assignee(entity: assigneeEntityDescription!, insertIntoManagedObjectContext: moc)
+                        newAssignee.login = assignee["login"].stringValue
+                        newAssignee.avatar = assignee["avatar_url"].stringValue
+                        newPR.mutableSetValueForKey("assignees").addObject(newAssignee)
+                    }
+                    
+                    milestone.mutableSetValueForKey("pullRequests").addObject(newPR)
                     
                 }
                 

@@ -1,5 +1,5 @@
 //
-//  Milestone+CoreDataProperties.swift
+//  PullRequest+CoreDataProperties.swift
 //  Git Miles
 //
 //  Created by Shubham Agrawal on 28/08/16.
@@ -12,20 +12,19 @@
 import Foundation
 import CoreData
 
-extension Milestone {
+extension PullRequest {
 
-    @NSManaged var closedAt: String?
-    @NSManaged var closedIssues: NSNumber?
-    @NSManaged var createdAt: String?
-    @NSManaged var descriptionBody: String?
-    @NSManaged var dueOn: String?
-    @NSManaged var id: NSNumber?
     @NSManaged var number: NSNumber?
-    @NSManaged var openIssues: NSNumber?
     @NSManaged var state: String?
     @NSManaged var title: String?
+    @NSManaged var body: String?
+    @NSManaged var userLogin: String?
+    @NSManaged var createdAt: String?
     @NSManaged var updatedAt: String?
-    @NSManaged var repo: Repository?
-    @NSManaged var pullRequests: NSSet?
+    @NSManaged var id: NSNumber?
+    @NSManaged var milestoneId: NSNumber?
+    @NSManaged var labels: NSSet?
+    @NSManaged var assignees: NSSet?
+    @NSManaged var milestone: Milestone?
 
 }

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="Assignee" representedClassName=".Assignee" syncable="YES">
+        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Label" representedClassName=".Label" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Milestone" representedClassName=".Milestone" syncable="YES">
         <attribute name="closedAt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="closedIssues" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -12,7 +20,22 @@
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pullRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PullRequest" inverseName="milestone" inverseEntity="PullRequest" syncable="YES"/>
         <relationship name="repo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Repository" inverseName="milestones" inverseEntity="Repository" syncable="YES"/>
+    </entity>
+    <entity name="PullRequest" representedClassName=".PullRequest" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="milestoneId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userLogin" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assignees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignee" syncable="YES"/>
+        <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Label" syncable="YES"/>
+        <relationship name="milestone" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Milestone" inverseName="pullRequests" inverseEntity="Milestone" syncable="YES"/>
     </entity>
     <entity name="Repository" representedClassName=".Repository" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -23,7 +46,10 @@
         <relationship name="milestones" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Milestone" inverseName="repo" inverseEntity="Milestone" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Milestone" positionX="-54" positionY="18" width="128" height="223"/>
-        <element name="Repository" positionX="250" positionY="62" width="128" height="133"/>
+        <element name="Milestone" positionX="-54" positionY="18" width="128" height="238"/>
+        <element name="Repository" positionX="144" positionY="108" width="128" height="133"/>
+        <element name="PullRequest" positionX="-18" positionY="-252" width="128" height="223"/>
+        <element name="Label" positionX="234" positionY="-90" width="128" height="73"/>
+        <element name="Assignee" positionX="142" positionY="-199" width="128" height="73"/>
     </elements>
 </model>

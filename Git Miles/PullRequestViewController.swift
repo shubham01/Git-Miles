@@ -22,6 +22,8 @@ class PullRequestViewController: UIViewController {
     @IBOutlet weak var labelsTable: UITableView!
     
     var pullRequest: PullRequest!
+    var labels: [Label]!
+    var assignees: [Assignee]!
     
     
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -36,6 +38,9 @@ class PullRequestViewController: UIViewController {
         showAvatars = defaults.boolForKey("showAvatars")
         
         setPullRequestDetails()
+        labels = pullRequest.labels?.allObjects as! [Label]
+        assignees = pullRequest.assignees?.allObjects as! [Assignee]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,10 +49,10 @@ class PullRequestViewController: UIViewController {
     }
     
     func setPullRequestDetails() {
-        titleLabel.text = pullRequest.title
-        idLabel.text = "#\(pullRequest.number)"
+        titleLabel.text = pullRequest.title!
+        idLabel.text = "#\(pullRequest.number!)"
         
-        stateLabel.text = " \(pullRequest.state) "
+        stateLabel.text = " \(pullRequest.state!) "
         if stateLabel.text == " open " {
             stateLabel.backgroundColor = UIColor(colorHex: 0x2ecc71, alpha: 0.8)
         }
@@ -63,10 +68,10 @@ class PullRequestViewController: UIViewController {
         
         dateFormatterOut.dateFormat = "HH:mm, MMM d yyyy"
         
-        let createdDate = dateFormatter.dateFromString(pullRequest.createdAt)
+        let createdDate = dateFormatter.dateFromString(pullRequest.createdAt!)
         createdLabel.text = "Created on \(dateFormatterOut.stringFromDate(createdDate!))"
         
-        let updatedDate = dateFormatter.dateFromString(pullRequest.updatedAt)
+        let updatedDate = dateFormatter.dateFromString(pullRequest.updatedAt!)
         updatedLabel.text = "Updated on \(dateFormatterOut.stringFromDate(updatedDate!))"
         
         descriptionLabel.text = pullRequest.body
@@ -103,9 +108,9 @@ extension PullRequestViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            return pullRequest.labels.count
+            return pullRequest.labels!.count
         } else if (section == 1) {
-            return pullRequest.assignees.count
+            return pullRequest.assignees!.count
         }
         return 0
     }
@@ -115,16 +120,16 @@ extension PullRequestViewController: UITableViewDataSource, UITableViewDelegate 
         if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("prLabelCell", forIndexPath:
                 indexPath) as! PRLabelCell
-            cell.setupCell(pullRequest.labels[indexPath.row])
+            cell.setupCell(labels[indexPath.row])
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCellWithIdentifier("prAssigneeCell", forIndexPath:
                 indexPath)
-            cell.textLabel?.text = pullRequest.assignees[indexPath.row].login
+            cell.textLabel?.text = assignees[indexPath.row].login
             
             if let show = showAvatars where show {
-                let url = NSURL(string: (pullRequest.assignees[indexPath.row].avatar))
+                let url = NSURL(string: (assignees[indexPath.row].avatar!))
                 print(url)
                 
                 cell.imageView?.af_setImageWithURL(url!, placeholderImage: ImageProvider.userPlaceHolderImage)

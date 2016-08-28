@@ -33,7 +33,6 @@
 		5145FBA41D642D2400C5EBE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5145FBA21D642D2400C5EBE5 /* LaunchScreen.storyboard */; };
 		5145FBAF1D642D2400C5EBE5 /* Git_MilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FBAE1D642D2400C5EBE5 /* Git_MilesTests.swift */; };
 		5145FBBA1D642D2400C5EBE5 /* Git_MilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5145FBB91D642D2400C5EBE5 /* Git_MilesUITests.swift */; };
-		516AD2E31D7046C00043DE26 /* Milestone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */; };
 		516AD2E41D7046C00043DE26 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E21D7046C00043DE26 /* Milestone.swift */; };
 		516AD2EB1D7077F70043DE26 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516AD2E91D7077F70043DE26 /* RepositoryCell.swift */; };
 		516AD2EC1D7077F70043DE26 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516AD2EA1D7077F70043DE26 /* RepositoryCell.xib */; };
@@ -42,9 +41,16 @@
 		51C86FD11D6A0A67001563F6 /* MilestoneOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */; };
 		51CD19EF1D6A0E1E006E8616 /* MilestonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */; };
 		51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */; };
-		51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19F41D6C2B7F006E8616 /* PullRequest.swift */; };
+		51CD19F51D6C2B7F006E8616 /* PullRequestOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CD19F41D6C2B7F006E8616 /* PullRequestOld.swift */; };
 		51CE784C1D72A5D00065A848 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE784B1D72A5D00065A848 /* SettingsViewController.swift */; };
 		51CE784E1D72AB640065A848 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE784D1D72AB640065A848 /* DataHelper.swift */; };
+		51CE78561D731E6C0065A848 /* PullRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78511D731E6C0065A848 /* PullRequest+CoreDataProperties.swift */; };
+		51CE78571D731E6C0065A848 /* Assignee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78521D731E6C0065A848 /* Assignee+CoreDataProperties.swift */; };
+		51CE78581D731E6C0065A848 /* Assignee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78531D731E6C0065A848 /* Assignee.swift */; };
+		51CE78591D731E6C0065A848 /* Label+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78541D731E6C0065A848 /* Label+CoreDataProperties.swift */; };
+		51CE785A1D731E6C0065A848 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78551D731E6C0065A848 /* Label.swift */; };
+		51CE785C1D731EA90065A848 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE785B1D731EA90065A848 /* PullRequest.swift */; };
+		51CE78661D7332F00065A848 /* Milestone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78651D7332F00065A848 /* Milestone+CoreDataProperties.swift */; };
 		5A77106949A9A99E96B5632B /* Pods_Git_Miles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD5DA1856DB64B5691A7E76 /* Pods_Git_Miles.framework */; };
 		98E5F31C4BCE66CD9205E2E9 /* Pods_Git_MilesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA2F7BC85A4208F57D4C8F7 /* Pods_Git_MilesTests.framework */; };
 		A1900744FDE1B1330F2C073B /* Pods_Git_MilesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DCAEE19A684A34C85FBAD9 /* Pods_Git_MilesUITests.framework */; };
@@ -104,7 +110,6 @@
 		5145FBB51D642D2400C5EBE5 /* Git MilesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Git MilesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5145FBB91D642D2400C5EBE5 /* Git_MilesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Git_MilesUITests.swift; sourceTree = "<group>"; };
 		5145FBBB1D642D2400C5EBE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Milestone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		516AD2E21D7046C00043DE26 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		516AD2E91D7077F70043DE26 /* RepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		516AD2EA1D7077F70043DE26 /* RepositoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
@@ -113,9 +118,16 @@
 		51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneOld.swift; sourceTree = "<group>"; };
 		51CD19EE1D6A0E1E006E8616 /* MilestonesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestonesViewController.swift; sourceTree = "<group>"; };
 		51CD19F21D6B7C2B006E8616 /* PullRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestsViewController.swift; sourceTree = "<group>"; };
-		51CD19F41D6C2B7F006E8616 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
+		51CD19F41D6C2B7F006E8616 /* PullRequestOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestOld.swift; sourceTree = "<group>"; };
 		51CE784B1D72A5D00065A848 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		51CE784D1D72AB640065A848 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
+		51CE78511D731E6C0065A848 /* PullRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PullRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		51CE78521D731E6C0065A848 /* Assignee+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignee+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		51CE78531D731E6C0065A848 /* Assignee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignee.swift; sourceTree = "<group>"; };
+		51CE78541D731E6C0065A848 /* Label+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Label+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		51CE78551D731E6C0065A848 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		51CE785B1D731EA90065A848 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
+		51CE78651D7332F00065A848 /* Milestone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Milestone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		74CC4152A86561566A1806F6 /* Pods-Git MilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git MilesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Git MilesTests/Pods-Git MilesTests.release.xcconfig"; sourceTree = "<group>"; };
 		83B349D54100A102C9496F0A /* Pods-Git Miles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git Miles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Git Miles/Pods-Git Miles.debug.xcconfig"; sourceTree = "<group>"; };
 		A241F95310804EAF33951953 /* Pods-Git MilesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git MilesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Git MilesUITests/Pods-Git MilesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,7 +168,7 @@
 			children = (
 				513C1C281D66F2C100D2DDE4 /* RepositoryOld.swift */,
 				51C86FD01D6A0A67001563F6 /* MilestoneOld.swift */,
-				51CD19F41D6C2B7F006E8616 /* PullRequest.swift */,
+				51CD19F41D6C2B7F006E8616 /* PullRequestOld.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -261,8 +273,14 @@
 			children = (
 				512AA5831D6EC7EB00F103EC /* Repository+CoreDataProperties.swift */,
 				512AA5841D6EC7EB00F103EC /* Repository.swift */,
-				516AD2E11D7046C00043DE26 /* Milestone+CoreDataProperties.swift */,
+				51CE78651D7332F00065A848 /* Milestone+CoreDataProperties.swift */,
 				516AD2E21D7046C00043DE26 /* Milestone.swift */,
+				51CE78511D731E6C0065A848 /* PullRequest+CoreDataProperties.swift */,
+				51CE785B1D731EA90065A848 /* PullRequest.swift */,
+				51CE78521D731E6C0065A848 /* Assignee+CoreDataProperties.swift */,
+				51CE78531D731E6C0065A848 /* Assignee.swift */,
+				51CE78541D731E6C0065A848 /* Label+CoreDataProperties.swift */,
+				51CE78551D731E6C0065A848 /* Label.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -564,6 +582,7 @@
 				511A3E6B1D72247400447B92 /* PRPullRequestHeaderCell.swift in Sources */,
 				513C1C291D66F2C100D2DDE4 /* RepositoryOld.swift in Sources */,
 				51CD19EF1D6A0E1E006E8616 /* MilestonesViewController.swift in Sources */,
+				51CE78581D731E6C0065A848 /* Assignee.swift in Sources */,
 				514401071D6DCA47006B8534 /* ColorExtension.swift in Sources */,
 				514401051D6DAFF2006B8534 /* PullRequestViewController.swift in Sources */,
 				512AA5851D6EC7EB00F103EC /* Repository+CoreDataProperties.swift in Sources */,
@@ -571,16 +590,21 @@
 				51CE784E1D72AB640065A848 /* DataHelper.swift in Sources */,
 				514400F91D6CC261006B8534 /* PRMilestoneCellContent.swift in Sources */,
 				5145FB9A1D642D2400C5EBE5 /* AppDelegate.swift in Sources */,
+				51CE78561D731E6C0065A848 /* PullRequest+CoreDataProperties.swift in Sources */,
 				517A2E6F1D64641100E14E1F /* GitHubAPIManager.swift in Sources */,
-				516AD2E31D7046C00043DE26 /* Milestone+CoreDataProperties.swift in Sources */,
+				51CE785C1D731EA90065A848 /* PullRequest.swift in Sources */,
 				514400FD1D6CCF05006B8534 /* PRMilestoneCellHeader.swift in Sources */,
-				51CD19F51D6C2B7F006E8616 /* PullRequest.swift in Sources */,
+				51CD19F51D6C2B7F006E8616 /* PullRequestOld.swift in Sources */,
 				51445B471D71D14500C57683 /* ImageProvider.swift in Sources */,
+				51CE78591D731E6C0065A848 /* Label+CoreDataProperties.swift in Sources */,
 				512AA5881D6ED49000F103EC /* CoreDataHelper.swift in Sources */,
 				5135E2681D6F27E300E3C29C /* PRLabelCell.swift in Sources */,
 				516AD2EB1D7077F70043DE26 /* RepositoryCell.swift in Sources */,
+				51CE78571D731E6C0065A848 /* Assignee+CoreDataProperties.swift in Sources */,
 				512AA5771D6EC3AD00F103EC /* DataController.swift in Sources */,
+				51CE785A1D731E6C0065A848 /* Label.swift in Sources */,
 				51CD19F31D6B7C2B006E8616 /* PullRequestsViewController.swift in Sources */,
+				51CE78661D7332F00065A848 /* Milestone+CoreDataProperties.swift in Sources */,
 				51CE784C1D72A5D00065A848 /* SettingsViewController.swift in Sources */,
 				516AD2E41D7046C00043DE26 /* Milestone.swift in Sources */,
 				51C86FD11D6A0A67001563F6 /* MilestoneOld.swift in Sources */,
