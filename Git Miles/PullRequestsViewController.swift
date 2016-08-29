@@ -86,7 +86,7 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (indexPath.row == 0) {
-            return milestoneDetailsCollapsed ? 44 : 150
+            return milestoneDetailsCollapsed ? 46 : 178
         }
         return UITableViewAutomaticDimension
     }
@@ -201,40 +201,6 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
             
         }
-    }
-    
-    // MARK: Member methods
-    
-    func setMilestoneCellContent(cell: PRMilestoneCellContent) {
-        
-        cell.titleLabel.text = milestone.title!
-        cell.descriptionLabel.text = milestone.descriptionBody!
-        
-        //To make NSDate objects from ISO8601 timestamp
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
-        
-        //To convert NSDate object to string
-        let dateFormatterOut = NSDateFormatter()
-        dateFormatterOut.locale = NSLocale(localeIdentifier: "en_IN")
-        
-        dateFormatterOut.dateFormat = "HH:mm, MMM d yyyy"
-        let updatedDate = dateFormatter.dateFromString(milestone.updatedAt!)
-        cell.lastUpdatedLabel.text = "Updated at \(dateFormatterOut.stringFromDate(updatedDate!))"
-        
-        if (milestone.dueOn == "") {
-            cell.dueOnLabel.text = "No due date"
-        } else {
-            dateFormatterOut.dateFormat = "MMM d yyyy"
-            let dueDate = dateFormatter.dateFromString(milestone.dueOn!)
-            cell.dueOnLabel.text = "Due on \(dateFormatterOut.stringFromDate(dueDate!))"
-        }
-        
-        let completed = (Double(milestone.closedIssues!) * 100.0) /
-                        (Double(milestone.closedIssues!) + Double(milestone.openIssues!))
-        cell.completedLabel.text = "\(round(completed))% completed"
-        cell.openClosedLabel.text = "\(milestone.openIssues!) open | \(milestone.closedIssues!) closed"
     }
 
 }

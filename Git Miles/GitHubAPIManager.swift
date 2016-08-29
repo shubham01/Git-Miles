@@ -60,9 +60,10 @@ class GitHubAPIManager {
     
     func getPullRequestsForMilestone(repoUrl: String, number: NSNumber, state: String, completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         let headers = ["Authorization": "token \(DataHelper.oAuthToken!)"]
         let url = repoUrl + "/issues"
-        print(url)
         
         let parameters: [String : AnyObject] = [
             "milestone": number,
@@ -71,17 +72,18 @@ class GitHubAPIManager {
         
         Alamofire.request(.GET, url, parameters: parameters, headers: headers)
             .responseJSON { response in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 completionHandler(response: response)
-                
         }
-        
     }
     
     func logout(completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let headers = ["Authorization": "Basic \(DataHelper.basicAuth!)"]
         let oAuthId = DataHelper.oAuthTokenID!
         Alamofire.request(.DELETE, API_URL + "authorizations/\(oAuthId)", headers: headers)
             .responseJSON() { response in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 completionHandler(response: response)
         }
     }

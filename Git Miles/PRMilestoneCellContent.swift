@@ -16,8 +16,10 @@ class PRMilestoneCellContent: UITableViewCell {
     @IBOutlet weak var dueOnLabel: UILabel!
     @IBOutlet weak var lastUpdatedLabel: UILabel!
     @IBOutlet weak var completedLabel: UILabel!
-    @IBOutlet weak var openClosedLabel: UILabel!
     @IBOutlet weak var dropdownIndicator: UIImageView!
+    @IBOutlet weak var openLabel: UILabel!
+    @IBOutlet weak var closedLabel: UILabel!
+    @IBOutlet weak var progressIndicator: UIProgressView!
     
     // MARK: Member variables
     var downIndicator: UIImage!
@@ -67,8 +69,14 @@ class PRMilestoneCellContent: UITableViewCell {
         
         let completed = (Double(milestone.closedIssues!) * 100.0) /
             (Double(milestone.closedIssues!) + Double(milestone.openIssues!))
+        
         completedLabel.text = "\(round(completed))% completed"
-        openClosedLabel.text = "\(milestone.openIssues!) open | \(milestone.closedIssues!) closed"
+        progressIndicator.setProgress(Float(completed / 100.0), animated: true)
+        
+        
+        
+        openLabel.text = "\(milestone.openIssues!) open"
+        closedLabel.text = "\(milestone.closedIssues!) closed"
         
         dropdownIndicator.image = downIndicator
     }

@@ -20,6 +20,7 @@ class PullRequestViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pullRequestIcon: UIImageView!
     @IBOutlet weak var labelsTable: UITableView!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     var pullRequest: PullRequest!
     var labels: [Label]!
@@ -65,6 +66,8 @@ class PullRequestViewController: UIViewController {
             pullRequestIcon.tintColor = redColor
             stateLabel.textColor = redColor
         }
+        
+        usernameLabel.text = pullRequest.userLogin!
         
         //To make NSDate objects from ISO8601 timestamp
         let dateFormatter = NSDateFormatter()

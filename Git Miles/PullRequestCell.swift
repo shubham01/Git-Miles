@@ -27,6 +27,9 @@ class PullRequestCell: UITableViewCell {
     }
     
     func setupCell(pr: PullRequest) {
+        
+        self.accessoryType = .DisclosureIndicator
+        
         titleLabel.text = pr.title
         usernameLabel.text = pr.userLogin
         
