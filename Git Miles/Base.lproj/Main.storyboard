@@ -479,10 +479,40 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Notifications" id="UKQ-zz-YQN">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="XeH-kP-C18">
+                                        <rect key="frame" x="0.0" y="237.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XeH-kP-C18" id="cXM-Wr-p16">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify me about due milestones" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kn2-Pz-37j">
+                                                    <rect key="frame" x="8" y="4" width="243" height="35.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFC-Wh-PfR">
+                                                    <rect key="frame" x="543" y="4" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gFC-Wh-PfR" firstAttribute="top" secondItem="Kn2-Pz-37j" secondAttribute="top" id="7pA-zL-nb9"/>
+                                                <constraint firstItem="Kn2-Pz-37j" firstAttribute="leading" secondItem="cXM-Wr-p16" secondAttribute="leadingMargin" id="9xe-u3-e8E"/>
+                                                <constraint firstItem="gFC-Wh-PfR" firstAttribute="baseline" secondItem="Kn2-Pz-37j" secondAttribute="baseline" id="Rdo-iI-c2M"/>
+                                                <constraint firstItem="gFC-Wh-PfR" firstAttribute="trailing" secondItem="cXM-Wr-p16" secondAttribute="trailingMargin" id="q0P-vA-DjC"/>
+                                                <constraint firstItem="Kn2-Pz-37j" firstAttribute="centerY" secondItem="cXM-Wr-p16" secondAttribute="centerY" id="xNZ-9L-Oiu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Account" id="br5-SS-iYY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="GLP-7D-JLy">
-                                        <rect key="frame" x="0.0" y="237.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="331.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GLP-7D-JLy" id="ueL-uQ-kh4">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -523,6 +553,7 @@
                         <outlet property="loggedInAsLabel" destination="fNX-hp-pAQ" id="s6A-GI-OPd"/>
                         <outlet property="showAvtarsSwitch" destination="uhP-aM-ykD" id="A7H-8A-wq7"/>
                         <outlet property="showOpenPRSwitch" destination="hg7-gj-N7G" id="L52-cJ-z15"/>
+                        <outlet property="showRemidersSwitch" destination="gFC-Wh-PfR" id="ENR-Fw-qAF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ya-s4-yCR" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -16,7 +16,15 @@ class GitHubAPIManager {
     
     let API_URL = "https://api.github.com/"
     let CLIENT_ID = "8c253e8f25e9cdb33ee2"
-    let CLIENT_SECRET = "23e343ae2c255f87ce680cc0a561063d3cf973e7"
+    let CLIENT_SECRET: String!
+    
+    init() {
+        let filePath = NSBundle.mainBundle().pathForResource("private", ofType: "plist")
+        let plist = NSDictionary(contentsOfFile: filePath!)
+        CLIENT_SECRET = plist?.objectForKey("CLIENT_SECRET") as! String
+        
+        print(CLIENT_SECRET)
+    }
     
     func authorize(username: String, password: String, otp: String, completionHandler: (response: Response<AnyObject,NSError>) -> ()) {
         let credentials = "\(username):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!

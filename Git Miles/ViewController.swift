@@ -75,6 +75,14 @@ class ViewController: UIViewController {
                     self.showDismissableSnackbar("Username or password is incorrect",
                                             duration: .Middle)
                 }
+            } else if (statusCode == 403) {
+                self.showDismissableSnackbar(
+                    "Too many wrong attempts! Please try after some time",
+                    duration: .Middle)
+            } else {
+                self.showDismissableSnackbar(
+                    "Oops! Please try again",
+                    duration: .Middle)
             }
         }
     }

@@ -51,6 +51,7 @@
 		51CE785A1D731E6C0065A848 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78551D731E6C0065A848 /* Label.swift */; };
 		51CE785C1D731EA90065A848 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE785B1D731EA90065A848 /* PullRequest.swift */; };
 		51CE78661D7332F00065A848 /* Milestone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE78651D7332F00065A848 /* Milestone+CoreDataProperties.swift */; };
+		51CE78681D7416420065A848 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51CE78671D7416420065A848 /* private.plist */; };
 		5A77106949A9A99E96B5632B /* Pods_Git_Miles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD5DA1856DB64B5691A7E76 /* Pods_Git_Miles.framework */; };
 		98E5F31C4BCE66CD9205E2E9 /* Pods_Git_MilesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA2F7BC85A4208F57D4C8F7 /* Pods_Git_MilesTests.framework */; };
 		A1900744FDE1B1330F2C073B /* Pods_Git_MilesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DCAEE19A684A34C85FBAD9 /* Pods_Git_MilesUITests.framework */; };
@@ -128,6 +129,7 @@
 		51CE78551D731E6C0065A848 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		51CE785B1D731EA90065A848 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
 		51CE78651D7332F00065A848 /* Milestone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Milestone+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		51CE78671D7416420065A848 /* private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
 		74CC4152A86561566A1806F6 /* Pods-Git MilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git MilesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Git MilesTests/Pods-Git MilesTests.release.xcconfig"; sourceTree = "<group>"; };
 		83B349D54100A102C9496F0A /* Pods-Git Miles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git Miles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Git Miles/Pods-Git Miles.debug.xcconfig"; sourceTree = "<group>"; };
 		A241F95310804EAF33951953 /* Pods-Git MilesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Git MilesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Git MilesUITests/Pods-Git MilesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				5145FBA51D642D2400C5EBE5 /* Info.plist */,
 				512AA5761D6EC3AD00F103EC /* DataController.swift */,
 				512AA57E1D6EC77400F103EC /* Models.xcdatamodeld */,
+				51CE78671D7416420065A848 /* private.plist */,
 			);
 			path = "Git Miles";
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				512AA57D1D6EC75B00F103EC /* PullRequestCell.xib in Resources */,
+				51CE78681D7416420065A848 /* private.plist in Resources */,
 				516AD2EC1D7077F70043DE26 /* RepositoryCell.xib in Resources */,
 				514400FA1D6CC261006B8534 /* PRMilestoneCellContent.xib in Resources */,
 				51C86FCF1D69F065001563F6 /* Main.storyboard in Resources */,

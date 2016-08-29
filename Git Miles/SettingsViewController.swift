@@ -14,6 +14,8 @@ class SettingsViewController: UITableViewController {
     // MARK: Outlets
     @IBOutlet weak var showAvtarsSwitch: UISwitch!
     @IBOutlet weak var showOpenPRSwitch: UISwitch!
+    @IBOutlet weak var showRemidersSwitch: UISwitch!
+    
     @IBOutlet weak var loggedInAsLabel: UILabel!
     
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -24,10 +26,19 @@ class SettingsViewController: UITableViewController {
         loggedInAsLabel.text = DataHelper.username!
         
         showAvtarsSwitch.tag = 1
-        showAvtarsSwitch.addTarget(self, action: #selector(SettingsViewController.showAvatarsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        showAvtarsSwitch.addTarget(self, action: #selector(
+            SettingsViewController.switchClicked(_:)),
+            forControlEvents: UIControlEvents.ValueChanged)
         
         showOpenPRSwitch.tag = 2
-        showOpenPRSwitch.addTarget(self, action: #selector(SettingsViewController.showAvatarsChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        showOpenPRSwitch.addTarget(self, action: #selector(
+            SettingsViewController.switchClicked(_:)),
+            forControlEvents: UIControlEvents.ValueChanged)
+        
+        showRemidersSwitch.tag = 3
+        showRemidersSwitch.addTarget(self, action: #selector(
+            SettingsViewController.switchClicked(_:)),
+            forControlEvents: UIControlEvents.ValueChanged)
         
         setupViews()
     }
@@ -35,15 +46,25 @@ class SettingsViewController: UITableViewController {
     func setupViews() {
         showAvtarsSwitch.on = defaults.boolForKey("showAvatars")
         showOpenPRSwitch.on = defaults.boolForKey("showOpenPRs")
+        showRemidersSwitch.on = defaults.boolForKey("showReminders")
     }
     
-    func showAvatarsChanged(switchView: UISwitch) {
+    func switchClicked(switchView: UISwitch) {
         switch switchView.tag {
         case showAvtarsSwitch.tag:
             defaults.setBool(showAvtarsSwitch.on, forKey: "showAvatars")
             break
         case showOpenPRSwitch.tag:
             defaults.setBool(showOpenPRSwitch.on, forKey: "showOpenPRs")
+            break
+        case showRemidersSwitch.tag:
+            defaults.setBool(showRemidersSwitch.on, forKey: "showReminders")
+            if showRemidersSwitch.on {
+                let notificationSettings = UIUserNotificationSettings(
+                    forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                UIApplication.sharedApplication().registerUserNotificationSettings(
+                    notificationSettings)
+            }
             break
         default: ()
         }
@@ -57,14 +78,17 @@ class SettingsViewController: UITableViewController {
     // MARK: Actions
     @IBAction func onClickLogout(sender: UIButton) {
         
-        let alert = UIAlertController(title: "Logout", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Logout", message: "Are you sure?",
+                                preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .Default , handler: { (action: UIAlertAction!) in
+        alert.addAction(UIAlertAction(title: "Yes", style: .Default , handler: {
+            (action: UIAlertAction!) in
             self.logout()
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
-//            alert.removeFromParentViewController()
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (action: UIAlertAction!) in
+            
         }))
 
         presentViewController(alert, animated: true, completion: nil)
@@ -76,8 +100,7 @@ class SettingsViewController: UITableViewController {
             response in
             
             let status = response.response?.statusCode
-            print(response)
-            print(status)
+            
             if status >= 200 && status < 300 {
                 CoreDataHelper.deleteEntity("Repository")
                 CoreDataHelper.deleteEntity("Milestone")
