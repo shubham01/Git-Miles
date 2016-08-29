@@ -72,38 +72,33 @@ class SettingsViewController: UITableViewController {
     }
     
     func logout() {
-        let snackbar = TTGSnackbar.init(message: "Logging out", duration: .Forever)
-        snackbar.show()
-        
-        CoreDataHelper.deleteEntity("Repository")
-        CoreDataHelper.deleteEntity("Milestone")
-        CoreDataHelper.deleteEntity("Label")
-        CoreDataHelper.deleteEntity("Assignee")
-        CoreDataHelper.deleteEntity("PullRequest")
-        
-        DataHelper.deleteValues()
-        
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("loginViewController") as! ViewController
-        UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
-        
-//        GitHubAPIManager.sharedInstance.logout() {
-//            response in
-//            snackbar.dismiss()
-//            
-//            let status = response.response?.statusCode
-//            print(response)
-//            if status >= 200 && status < 300 {
-//                
-//            } else {
-//                let errorSnackBar = TTGSnackbar.init(message: "Oops! Please log out again", duration: .Long, actionText: "Retry") {
-//                    snackbar in
-//                    snackbar.dismiss()
-//                    self.logout()
-//                }
-//                errorSnackBar.show()
-//            }
-//        }
+        GitHubAPIManager.sharedInstance.logout() {
+            response in
+            
+            let status = response.response?.statusCode
+            print(response)
+            print(status)
+            if status >= 200 && status < 300 {
+                CoreDataHelper.deleteEntity("Repository")
+                CoreDataHelper.deleteEntity("Milestone")
+                CoreDataHelper.deleteEntity("Label")
+                CoreDataHelper.deleteEntity("Assignee")
+                CoreDataHelper.deleteEntity("PullRequest")
+                
+                DataHelper.deleteValues()
+                
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = mainStoryboard.instantiateViewControllerWithIdentifier("loginViewController") as! ViewController
+                UIApplication.sharedApplication().keyWindow?.rootViewController = viewController;
+            } else {
+                let errorSnackBar = TTGSnackbar.init(message: "Oops! Please log out again", duration: .Long, actionText: "Retry") {
+                    snackbar in
+                    snackbar.dismiss()
+                    self.logout()
+                }
+                errorSnackBar.show()
+            }
+        }
     }
 
     

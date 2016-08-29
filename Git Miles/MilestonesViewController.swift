@@ -13,7 +13,6 @@ import CoreData
 class MilestonesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var repo: Repository!
-    let activityIndicator = UIActivityIndicatorView()
     
     var selectedMilestone: Milestone!
     
@@ -31,7 +30,6 @@ class MilestonesViewController: UITableViewController, NSFetchedResultsControlle
         GitHubAPIManager.sharedInstance.getMilestones(milestonesUrl) {
             response in
             
-            self.activityIndicator.hidden = true
             let statusCode = response.response?.statusCode
             
             if (statusCode >= 200 && statusCode < 300) {
@@ -39,16 +37,8 @@ class MilestonesViewController: UITableViewController, NSFetchedResultsControlle
                 CoreDataHelper.storeMilestones(milestones, repo: self.repo)
             }
             
-            self.activityIndicator.removeFromSuperview()
             self.tableView.reloadData()
         }
-    }
-    
-    func showActivityIndicator() {
-        activityIndicator.center = self.view.center
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        self.view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

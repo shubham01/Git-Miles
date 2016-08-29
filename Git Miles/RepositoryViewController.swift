@@ -18,8 +18,6 @@ class RepositoryViewController: UITableViewController, UISearchBarDelegate,
 //    var shouldShowSearchResults = false
     var selectedRepo: Repository!
     
-    let activityIndicator = UIActivityIndicatorView()
-    
     var searchController: UISearchController!
     var fetchedResultsController: NSFetchedResultsController!
     
@@ -40,23 +38,10 @@ class RepositoryViewController: UITableViewController, UISearchBarDelegate,
                 
                 //store repos
                 CoreDataHelper.storeRepos(json)
-//                self.repos = CoreDataHelper.fetchRepos()
             }
-            
-            self.activityIndicator.removeFromSuperview()
-//            self.tableView.reloadData()
         }
         
         configureSearchController()
-    }
-    
-    // MARK: User Interface
-    
-    func showActivityIndicator() {
-        activityIndicator.center = self.view.center
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        self.view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
     }
     
     // MARK: FetchedResultsController

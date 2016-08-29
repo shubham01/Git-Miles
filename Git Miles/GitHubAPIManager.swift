@@ -79,9 +79,13 @@ class GitHubAPIManager {
     
     func logout(completionHandler: (response: Response<AnyObject, NSError>) -> ()) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let headers = ["Authorization": "Basic \(DataHelper.basicAuth!)"]
-        let oAuthId = DataHelper.oAuthTokenID!
-        Alamofire.request(.DELETE, API_URL + "authorizations/\(oAuthId)", headers: headers)
+        let URL = API_URL + "applications/\(CLIENT_ID)/tokens/\(DataHelper.oAuthToken!)"
+        
+        let credentials = "\(CLIENT_ID):\(CLIENT_SECRET)".dataUsingEncoding(NSUTF8StringEncoding)!
+        let credBase64 = credentials.base64EncodedStringWithOptions([])
+        let headers = ["Authorization": "Basic \(credBase64)"]
+        
+        Alamofire.request(.DELETE, URL, headers: headers)
             .responseJSON() { response in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 completionHandler(response: response)

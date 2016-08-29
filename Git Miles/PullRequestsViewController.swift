@@ -17,8 +17,6 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
     var milestone: Milestone!
     var repo: Repository!
     
-    var activityIndicator = UIActivityIndicatorView()
-    
     var selectedPR: PullRequest!
     var milestoneDetailsCollapsed: Bool = true
     
@@ -39,11 +37,6 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
         
         configureFetchedResultsController()
         
-        activityIndicator.center = self.view.center
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        self.view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        
         tableView.registerNib(UINib(nibName: "PRMilestoneCellContent", bundle: nil), forCellReuseIdentifier: "prMilestoneCellContent")
         tableView.registerNib(UINib(nibName: "PullRequestCell", bundle: nil), forCellReuseIdentifier: "pullRequestCell")
         tableView.registerNib(UINib(nibName: "PRPullRequestHeaderCell", bundle: nil), forCellReuseIdentifier: "prPRHeaderCell")
@@ -51,12 +44,9 @@ class PullRequestsViewController: UITableViewController, NSFetchedResultsControl
         GitHubAPIManager.sharedInstance.getPullRequestsForMilestone(repo.url!, number: milestone.number!, state: prStateToShow) {
             response in
             
-            self.activityIndicator.hidden = true
-            
             let json = JSON(response.result.value!)
             CoreDataHelper.storePullRequest(json, milestone: self.milestone)
             
-            self.activityIndicator.removeFromSuperview()
             self.tableView.reloadData()
         }
     }

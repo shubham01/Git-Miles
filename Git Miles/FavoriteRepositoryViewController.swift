@@ -20,13 +20,10 @@ class FavoriteRepositoryViewController: UITableViewController, NSFetchedResultsC
         
         tableView.registerNib(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "repositoryCell")
         configureFetchedResultsController()
-
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
